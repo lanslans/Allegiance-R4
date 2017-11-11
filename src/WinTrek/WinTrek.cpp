@@ -3043,7 +3043,9 @@ public:
 		// BT - 10/17 - HighRes Textures
 		m_bUseHighResTextures    = (LoadPreference("HighResTextures",		1) != 0);
 
+#if (DIRECT3D_VERSION >= 0x0800)
 		m_pmodeler->SetHighResTextures(m_bUseHighResTextures);
+#endif
 
         //
         // Initial screen size
@@ -5445,7 +5447,9 @@ public:
 
 		SavePreference("HighResTextures", m_bUseHighResTextures);
 
+#if (DIRECT3D_VERSION >= 0x0800)
 		GetWindow()->GetModeler()->SetHighResTextures(m_bUseHighResTextures);
+#endif
 
 		if (m_pitemToggleHighResTextures != NULL) {
 			m_pitemToggleHighResTextures->SetString(GetHighResTexturesString());

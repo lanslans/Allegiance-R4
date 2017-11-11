@@ -2344,9 +2344,13 @@ const char * CmapPVMakerFromIGCFile::GenerateMission(const char * igcfile,	Imiss
 {
     Modeler* pmodeler = pmission->GetModeler();
 
+#if (DIRECT3D_VERSION >= 0x0800)
 	// BT - 10/17 - HighRes Textures
 	TRef<ZFile> zf = pmodeler->GetFile(igcfile,"igc",false, pmodeler->GetUseHighResTextures());
-    
+#else
+	TRef<ZFile> zf = pmodeler->GetFile(igcfile, "igc", false);
+#endif
+
 	if (!zf) return "no preview available";
 
 	int             iDatasize;
