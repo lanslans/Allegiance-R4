@@ -161,6 +161,7 @@ public:
         IshipIGC*       pshipSource = trekClient.GetShip()->GetSourceShip();
         IclusterIGC*    pcluster = pshipSource->GetCluster();
 
+		/*
 		ControlData controlData = trekClient.GetShip()->GetControls();
 
 		Rect        mouseRect = GetViewRect()->GetValue();
@@ -171,6 +172,8 @@ public:
 		pcontext->DrawImage(m_psurfaceLeadInRange, true, mousePoint);
 
 		//pcontext->DrawImage3D(m_psurfaceLeadInRange, Color(0.33f, 0.33f, 0.33f, 0.5f), true, mousePoint);
+		*/
+
 
         if (pcluster)
         {
