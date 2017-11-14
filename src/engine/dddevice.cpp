@@ -217,6 +217,7 @@ WinPoint g_validModes[] =
     WinPoint( 800,  600),
     WinPoint(1024,  768),
     WinPoint(1280, 1024),
+	WinPoint(1366,  768),
     WinPoint(1600, 1200)
 };
 
@@ -281,7 +282,7 @@ private:
         DWORD dwNeededVideoMemory = 6 * xsize * ysize;
 
         if (
-               bits == 16 // KGJV 32B TODO: this works as long as all 16bpp modes are supported in 32bpp too...
+               bits == 32 // KGJV 32B TODO: this works as long as all 16bpp modes are supported in 32bpp too...
             && xsize >= 640
             && ysize >= 480
             // !!! NT doesn't return the right value for TotalVideoMemory
