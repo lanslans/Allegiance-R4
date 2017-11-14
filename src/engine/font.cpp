@@ -214,11 +214,11 @@ private:
         // Make that all of the value GDI returned to us are good
         //
 
-        for (index = 0; index < 256; index++) {
-            ZAssert(m_data[index].m_size.X() >  0           );
-            ZAssert(m_data[index].m_size.X() <  m_height * 4);
-            ZAssert(m_data[index].m_size.Y() == m_height    );
-        }
+		for (index = 0; index < 256; index++) {
+			// ZAssert(m_data[index].m_size.X() >	0			); // KG- Vista doesnt like this
+			ZAssert(m_data[index].m_size.X() <  m_height * 4);
+			ZAssert(m_data[index].m_size.Y() == m_height);
+		}
     }
 
     //////////////////////////////////////////////////////////////////////////////

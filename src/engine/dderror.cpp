@@ -6,8 +6,8 @@
 
 #include "pch.h"
 #include "ddraw.h"
-#include "d3d.h"
-#include "d3drm.h"
+//#include "d3d.h"
+//#include "d3drm.h"
 #include "dinput.h"
 
 #ifdef _DEBUG
@@ -459,87 +459,87 @@ HRESULTInfo gpinfo[] =
     /*** Direct3D Retained-Mode Errors ***/
     /*************************************/
 
-    {D3DRMERR_BADOBJECT, "D3DRMERR_BADOBJECT",
-        "Object expected in argument"},
+    //{D3DRMERR_BADOBJECT, "D3DRMERR_BADOBJECT",
+    //    "Object expected in argument"},
 
-    {D3DRMERR_BADTYPE, "D3DRMERR_BADTYPE",
-        "Bad argument type passed"},
+    //{D3DRMERR_BADTYPE, "D3DRMERR_BADTYPE",
+    //    "Bad argument type passed"},
 
-    {D3DRMERR_BADALLOC, "D3DRMERR_ALLOC",
-        "Out of memory"},
+    //{D3DRMERR_BADALLOC, "D3DRMERR_ALLOC",
+    //    "Out of memory"},
 
-    {D3DRMERR_FACEUSED, "D3DRMERR_FACEUSED",
-        "Face already used in a mesh"},
+    //{D3DRMERR_FACEUSED, "D3DRMERR_FACEUSED",
+    //    "Face already used in a mesh"},
 
-    {D3DRMERR_NOTFOUND, "D3DRMERR_NOTFOUND",
-        "Object not found in specified place"},
+    //{D3DRMERR_NOTFOUND, "D3DRMERR_NOTFOUND",
+    //    "Object not found in specified place"},
 
-    {D3DRMERR_NOTDONEYET, "D3DRMERR_NOTDONEYET",
-        "Unimplemented"},
+    //{D3DRMERR_NOTDONEYET, "D3DRMERR_NOTDONEYET",
+    //    "Unimplemented"},
 
-    {D3DRMERR_FILENOTFOUND, "D3DRMERR_FILENOTFOUND",
-        "File cannot be opened"},
+    //{D3DRMERR_FILENOTFOUND, "D3DRMERR_FILENOTFOUND",
+    //    "File cannot be opened"},
 
-    {D3DRMERR_BADFILE, "D3DRMERR_BADFILE",
-        "Data file is corrupt or has incorrect format"},
+    //{D3DRMERR_BADFILE, "D3DRMERR_BADFILE",
+    //    "Data file is corrupt or has incorrect format"},
 
-    {D3DRMERR_BADDEVICE, "D3DRMERR_BADDEVICE",
-        "Device is not compatible with renderer"},
+    //{D3DRMERR_BADDEVICE, "D3DRMERR_BADDEVICE",
+    //    "Device is not compatible with renderer"},
 
-    {D3DRMERR_BADVALUE, "D3DRMERR_BADVALUE",
-        "Bad argument value passed"},
+    //{D3DRMERR_BADVALUE, "D3DRMERR_BADVALUE",
+    //    "Bad argument value passed"},
 
-    {D3DRMERR_BADMAJORVERSION, "D3DRMERR_BADMAJORVERSION",
-        "Bad DLL major version"},
+    //{D3DRMERR_BADMAJORVERSION, "D3DRMERR_BADMAJORVERSION",
+    //    "Bad DLL major version"},
 
-    {D3DRMERR_BADMINORVERSION, "D3DRMERR_BADMINORVERSION",
-        "Bad DLL minor version"},
+    //{D3DRMERR_BADMINORVERSION, "D3DRMERR_BADMINORVERSION",
+    //    "Bad DLL minor version"},
 
-    {D3DRMERR_UNABLETOEXECUTE, "D3DRMERR_UNABLETOEXECUTE",
-        "Unable to carry out procedure"},
+    //{D3DRMERR_UNABLETOEXECUTE, "D3DRMERR_UNABLETOEXECUTE",
+    //    "Unable to carry out procedure"},
 
-    //
-    // DirectInput errors
-    //
+    ////
+    //// DirectInput errors
+    ////
 
-    { DI_BUFFEROVERFLOW, "DI_BUFFEROVERFLOW", "The device buffer overflowed and some input was lost. This value is equal to the S_FALSE standard COM return value."},
-    { DI_DOWNLOADSKIPPED , "DI_DOWNLOADSKIPPED ","The parameters of the effect were successfully updated, but the effect could not be downloaded because the associated device was not acquired in exclusive mode."},
-    { DI_EFFECTRESTARTED , "DI_EFFECTRESTARTED ","The effect was stopped, the parameters were updated, and the effect was restarted."},
-    { DI_NOEFFECT , "DI_NOEFFECT ","The operation had no effect. This value is equal to the S_FALSE standard COM return value."},
-    { DI_NOTATTACHED , "DI_NOTATTACHED ","The device exists but is not currently attached. This value is equal to the S_FALSE standard COM return value."},
-    { DI_OK , "DI_OK ","The operation completed successfully. This value is equal to the S_OK standard COM return value."},
-    { DI_POLLEDDEVICE , "DI_POLLEDDEVICE ","The device is a polled device. As a result, device buffering will not collect any data and event notifications will not be signaled until the IDirectInputDevice2::Poll method is called."},
-    { DI_PROPNOEFFECT , "DI_PROPNOEFFECT ","The change in device properties had no effect. This value is equal to the S_FALSE standard COM return value."},
-    { DI_TRUNCATED , "DI_TRUNCATED ","The parameters of the effect were successfully updated, but some of them were beyond the capabilities of the device and were truncated to the nearest supported value."},
-    { DI_TRUNCATEDANDRESTARTED , "DI_TRUNCATEDANDRESTARTED ","Equal to DI_EFFECTRESTARTED | DI_TRUNCATED."},
-    { DIERR_ACQUIRED , "DIERR_ACQUIRED ","The operation cannot be performed while the device is acquired."},
-    { DIERR_ALREADYINITIALIZED , "DIERR_ALREADYINITIALIZED ","This object is already initialized"},
-    { DIERR_BADDRIVERVER , "DIERR_BADDRIVERVER ","The object could not be created due to an incompatible driver version or mismatched or incomplete driver components."},
-    { DIERR_BETADIRECTINPUTVERSION , "DIERR_BETADIRECTINPUTVERSION ","The application was written for an unsupported prerelease version of DirectInput."},
-    { DIERR_DEVICEFULL , "DIERR_DEVICEFULL ","The device is full."},
-    { DIERR_DEVICENOTREG , "DIERR_DEVICENOTREG ","The device or device instance is not registered with DirectInput. This value is equal to the REGDB_E_CLASSNOTREG standard COM return value."},
-    { DIERR_EFFECTPLAYING , "DIERR_EFFECTPLAYING ","The parameters were updated in memory but were not downloaded to the device because the device does not support updating an effect while it is still playing."},
-    { DIERR_HASEFFECTS , "DIERR_HASEFFECTS ","The device cannot be reinitialized because there are still effects attached to it."},
-    { DIERR_GENERIC , "DIERR_GENERIC ","An undetermined error occurred inside the DirectInput subsystem. This value is equal to the E_FAIL standard COM return value."},
-    { DIERR_HANDLEEXISTS , "DIERR_HANDLEEXISTS ","The device already has an event notification associated with it. This value is equal to the E_ACCESSDENIED standard COM return value."},
-    { DIERR_INCOMPLETEEFFECT , "DIERR_INCOMPLETEEFFECT ","The effect could not be downloaded because essential information is missing. For example, no axes have been associated with the effect, or no type-specific information has been supplied."},
-    { DIERR_INPUTLOST , "DIERR_INPUTLOST ","Access to the input device has been lost. It must be reacquired."},
-    { DIERR_INVALIDPARAM , "DIERR_INVALIDPARAM ","An invalid parameter was passed to the returning function, or the object was not in a state that permitted the function to be called."},
-    { DIERR_MOREDATA , "DIERR_MOREDATA ","Not all the requested information fitted into the buffer."},
-    { DIERR_NOAGGREGATION , "DIERR_NOAGGREGATION ","This object does not support aggregation."},
-    { DIERR_NOINTERFACE , "DIERR_NOINTERFACE ","The specified interface is not supported by the object. This value is equal to the E_NOINTERFACE standard COM return value."},
-    { DIERR_NOTACQUIRED , "DIERR_NOTACQUIRED ","The operation cannot be performed unless the device is acquired."},
-    { DIERR_NOTBUFFERED , "DIERR_NOTBUFFERED ","The device is not buffered. Set the DIPROP_BUFFERSIZE property to enable buffering."},
-    { DIERR_NOTDOWNLOADED , "DIERR_NOTDOWNLOADED ","The effect is not downloaded."},
-    { DIERR_NOTEXCLUSIVEACQUIRED , "DIERR_NOTEXCLUSIVEACQUIRED ","The operation cannot be performed unless the device is acquired in DISCL_EXCLUSIVE mode."},
-    { DIERR_NOTFOUND , "DIERR_NOTFOUND ","The requested object does not exist."},
-    { DIERR_NOTINITIALIZED , "DIERR_NOTINITIALIZED ","This object has not been initialized."},
-    { DIERR_OBJECTNOTFOUND , "DIERR_OBJECTNOTFOUND ","The requested object does not exist."},
-    { DIERR_OLDDIRECTINPUTVERSION , "DIERR_OLDDIRECTINPUTVERSION ", "he application requires a newer version of DirectInput."},
-    { DIERR_OTHERAPPHASPRIO , "DIERR_OTHERAPPHASPRIO ","Another application has a higher priority level, preventing this call from succeeding."},
-    { DIERR_OUTOFMEMORY , "DIERR_OUTOFMEMORY ","The DirectInput subsystem couldn't allocate sufficient memory to complete the call. This value is equal to the E_OUTOFMEMORY standard COM return value."},
-    { DIERR_READONLY , "DIERR_READONLY ","The specified property cannot be changed. This value is equal to the E_ACCESSDENIED standard COM return value."},
-    { DIERR_UNSUPPORTED , "DIERR_UNSUPPORTED ","The function called is not supported at this time. This value is equal to the E_NOTIMPL standard COM return value."},
+    //{ DI_BUFFEROVERFLOW, "DI_BUFFEROVERFLOW", "The device buffer overflowed and some input was lost. This value is equal to the S_FALSE standard COM return value."},
+    //{ DI_DOWNLOADSKIPPED , "DI_DOWNLOADSKIPPED ","The parameters of the effect were successfully updated, but the effect could not be downloaded because the associated device was not acquired in exclusive mode."},
+    //{ DI_EFFECTRESTARTED , "DI_EFFECTRESTARTED ","The effect was stopped, the parameters were updated, and the effect was restarted."},
+    //{ DI_NOEFFECT , "DI_NOEFFECT ","The operation had no effect. This value is equal to the S_FALSE standard COM return value."},
+    //{ DI_NOTATTACHED , "DI_NOTATTACHED ","The device exists but is not currently attached. This value is equal to the S_FALSE standard COM return value."},
+    //{ DI_OK , "DI_OK ","The operation completed successfully. This value is equal to the S_OK standard COM return value."},
+    //{ DI_POLLEDDEVICE , "DI_POLLEDDEVICE ","The device is a polled device. As a result, device buffering will not collect any data and event notifications will not be signaled until the IDirectInputDevice2::Poll method is called."},
+    //{ DI_PROPNOEFFECT , "DI_PROPNOEFFECT ","The change in device properties had no effect. This value is equal to the S_FALSE standard COM return value."},
+    //{ DI_TRUNCATED , "DI_TRUNCATED ","The parameters of the effect were successfully updated, but some of them were beyond the capabilities of the device and were truncated to the nearest supported value."},
+    //{ DI_TRUNCATEDANDRESTARTED , "DI_TRUNCATEDANDRESTARTED ","Equal to DI_EFFECTRESTARTED | DI_TRUNCATED."},
+    //{ DIERR_ACQUIRED , "DIERR_ACQUIRED ","The operation cannot be performed while the device is acquired."},
+    //{ DIERR_ALREADYINITIALIZED , "DIERR_ALREADYINITIALIZED ","This object is already initialized"},
+    //{ DIERR_BADDRIVERVER , "DIERR_BADDRIVERVER ","The object could not be created due to an incompatible driver version or mismatched or incomplete driver components."},
+    //{ DIERR_BETADIRECTINPUTVERSION , "DIERR_BETADIRECTINPUTVERSION ","The application was written for an unsupported prerelease version of DirectInput."},
+    //{ DIERR_DEVICEFULL , "DIERR_DEVICEFULL ","The device is full."},
+    //{ DIERR_DEVICENOTREG , "DIERR_DEVICENOTREG ","The device or device instance is not registered with DirectInput. This value is equal to the REGDB_E_CLASSNOTREG standard COM return value."},
+    //{ DIERR_EFFECTPLAYING , "DIERR_EFFECTPLAYING ","The parameters were updated in memory but were not downloaded to the device because the device does not support updating an effect while it is still playing."},
+    //{ DIERR_HASEFFECTS , "DIERR_HASEFFECTS ","The device cannot be reinitialized because there are still effects attached to it."},
+    //{ DIERR_GENERIC , "DIERR_GENERIC ","An undetermined error occurred inside the DirectInput subsystem. This value is equal to the E_FAIL standard COM return value."},
+    //{ DIERR_HANDLEEXISTS , "DIERR_HANDLEEXISTS ","The device already has an event notification associated with it. This value is equal to the E_ACCESSDENIED standard COM return value."},
+    //{ DIERR_INCOMPLETEEFFECT , "DIERR_INCOMPLETEEFFECT ","The effect could not be downloaded because essential information is missing. For example, no axes have been associated with the effect, or no type-specific information has been supplied."},
+    //{ DIERR_INPUTLOST , "DIERR_INPUTLOST ","Access to the input device has been lost. It must be reacquired."},
+    //{ DIERR_INVALIDPARAM , "DIERR_INVALIDPARAM ","An invalid parameter was passed to the returning function, or the object was not in a state that permitted the function to be called."},
+    //{ DIERR_MOREDATA , "DIERR_MOREDATA ","Not all the requested information fitted into the buffer."},
+    //{ DIERR_NOAGGREGATION , "DIERR_NOAGGREGATION ","This object does not support aggregation."},
+    //{ DIERR_NOINTERFACE , "DIERR_NOINTERFACE ","The specified interface is not supported by the object. This value is equal to the E_NOINTERFACE standard COM return value."},
+    //{ DIERR_NOTACQUIRED , "DIERR_NOTACQUIRED ","The operation cannot be performed unless the device is acquired."},
+    //{ DIERR_NOTBUFFERED , "DIERR_NOTBUFFERED ","The device is not buffered. Set the DIPROP_BUFFERSIZE property to enable buffering."},
+    //{ DIERR_NOTDOWNLOADED , "DIERR_NOTDOWNLOADED ","The effect is not downloaded."},
+    //{ DIERR_NOTEXCLUSIVEACQUIRED , "DIERR_NOTEXCLUSIVEACQUIRED ","The operation cannot be performed unless the device is acquired in DISCL_EXCLUSIVE mode."},
+    //{ DIERR_NOTFOUND , "DIERR_NOTFOUND ","The requested object does not exist."},
+    //{ DIERR_NOTINITIALIZED , "DIERR_NOTINITIALIZED ","This object has not been initialized."},
+    //{ DIERR_OBJECTNOTFOUND , "DIERR_OBJECTNOTFOUND ","The requested object does not exist."},
+    //{ DIERR_OLDDIRECTINPUTVERSION , "DIERR_OLDDIRECTINPUTVERSION ", "he application requires a newer version of DirectInput."},
+    //{ DIERR_OTHERAPPHASPRIO , "DIERR_OTHERAPPHASPRIO ","Another application has a higher priority level, preventing this call from succeeding."},
+    //{ DIERR_OUTOFMEMORY , "DIERR_OUTOFMEMORY ","The DirectInput subsystem couldn't allocate sufficient memory to complete the call. This value is equal to the E_OUTOFMEMORY standard COM return value."},
+    //{ DIERR_READONLY , "DIERR_READONLY ","The specified property cannot be changed. This value is equal to the E_ACCESSDENIED standard COM return value."},
+    //{ DIERR_UNSUPPORTED , "DIERR_UNSUPPORTED ","The function called is not supported at this time. This value is equal to the E_NOTIMPL standard COM return value."},
 
     /************************************/
     /*** Miscellaneous Windows Errors ***/

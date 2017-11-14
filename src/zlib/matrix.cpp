@@ -576,12 +576,12 @@ Matrix& Matrix::SetInverse(const Matrix& mStart)
         // pick the largest row in the rowth column
         //
 
-        float max    = abs(m.m_m[row][row]);
+        float max    = fabs(m.m_m[row][row]);
         int   rowMax = row;
 
         for (int rowIndex = row + 1; rowIndex < size; rowIndex++) {
-            if (abs(m.m_m[rowIndex][row]) > max) {
-                max = abs(m.m_m[rowIndex][row]);
+            if (fabs(m.m_m[rowIndex][row]) > max) {
+                max = fabs(m.m_m[rowIndex][row]);
                 rowMax = rowIndex;
             }
         }
@@ -597,8 +597,8 @@ Matrix& Matrix::SetInverse(const Matrix& mStart)
 
             bSwap = true;
             for (int col = 0; col < size; col++) {
-                swap(m.m_m[row][col], m.m_m[rowMax][col]);
-                swap(  m_m[row][col],   m_m[rowMax][col]);
+                Swap(m.m_m[row][col], m.m_m[rowMax][col]);
+                Swap(  m_m[row][col],   m_m[rowMax][col]);
             }
         }
 

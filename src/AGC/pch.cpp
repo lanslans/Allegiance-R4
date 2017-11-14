@@ -3,6 +3,8 @@
 //  pch.pch will be the pre-compiled header
 //  pch.obj will contain the pre-compiled type information
 
+//#include <WinUser.h>
+
 #include "pch.h"
 
 //#include <atlimpl.cpp>
@@ -12,6 +14,6 @@
 
 #ifdef _ATL_STATIC_REGISTRY
   #include <statreg.h>
-  #include <statreg.cpp>
+  //#include <statreg.cpp>
 #endif
 
