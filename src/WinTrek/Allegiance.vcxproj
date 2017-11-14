@@ -111,7 +111,7 @@
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <PostBuildEvent>
-      <Command>dir 
+      <Command>
 xcopy $(ProjectDir)..\lib\steam\steam_api.dll $(OutDir) /s /d /y
 xcopy $(ProjectDir)..\Inc\steam_appid.txt $(OutDir) /s /d /y
 xcopy $(ProjectDir)..\lib\FreeImage\FreeImage.dll $(OutDir) /s /d /y</Command>
@@ -143,7 +143,7 @@ xcopy $(ProjectDir)..\lib\FreeImage\FreeImage.dll $(OutDir) /s /d /y</Command>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <PostBuildEvent>
-      <Command>dir 
+      <Command>
 xcopy $(ProjectDir)..\lib\steam\steam_api.dll $(OutDir) /s /d /y
 xcopy $(ProjectDir)..\Inc\steam_appid.txt $(OutDir) /s /d /y
 xcopy $(ProjectDir)..\lib\FreeImage\FreeImage.dll $(OutDir) /s /d /y</Command>
@@ -179,7 +179,7 @@ xcopy $(ProjectDir)..\lib\FreeImage\FreeImage.dll $(OutDir) /s /d /y</Command>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <PostBuildEvent>
-      <Command>dir 
+      <Command>
 xcopy $(ProjectDir)..\lib\steam\steam_api.dll $(OutDir) /s /d /y
 xcopy $(ProjectDir)..\Inc\steam_appid.txt $(OutDir) /s /d /y
 xcopy $(ProjectDir)..\lib\FreeImage\FreeImage.dll $(OutDir) /s /d /y</Command>
@@ -213,7 +213,7 @@ xcopy $(ProjectDir)..\lib\FreeImage\FreeImage.dll $(OutDir) /s /d /y</Command>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <PostBuildEvent>
-      <Command>dir 
+      <Command>
 xcopy $(ProjectDir)..\lib\steam\steam_api.dll $(OutDir) /s /d /y
 xcopy $(ProjectDir)..\Inc\steam_appid.txt $(OutDir) /s /d /y
 xcopy $(ProjectDir)..\lib\FreeImage\FreeImage.dll $(OutDir) /s /d /y</Command>
