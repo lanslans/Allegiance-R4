@@ -20,6 +20,8 @@
 
 #include "treki.h"
 
+
+
 extern bool g_bActivity; //Imago: AFK from Activity flag
 
 const float s_fMaxFOV = RadiansFromDegrees(50.0f);
