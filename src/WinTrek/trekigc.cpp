@@ -4120,7 +4120,7 @@ void      WinTrekClient::ReceiveChat(IshipIGC*   pshipSender,
         Training::RecordChat (ctRecipient);
     }
 
-    bool    bForMe;
+    bool    bForMe = false;
 
     ZString     strSender;
     ZString     strRecipient;
@@ -4174,16 +4174,20 @@ void      WinTrekClient::ReceiveChat(IshipIGC*   pshipSender,
             case CHAT_TEAM:
             {
                 IsideIGC*   pside = trekClient.GetShip()->GetSide();
-                if ((oidRecipient == NA) || (oidRecipient == pside->GetObjectID()))
-                {
-                    strRecipient = pside->GetName();
-                    bForMe = true;
-                }
-                else
-                {
-                    strRecipient = trekClient.m_pCoreIGC->GetSide(oidRecipient)->GetName();
-                    bForMe = false;
-                }
+
+				if (pside != nullptr)
+				{
+					if ((oidRecipient == NA) || (oidRecipient == pside->GetObjectID()))
+					{
+						strRecipient = pside->GetName();
+						bForMe = true;
+					}
+					else
+					{
+						strRecipient = trekClient.m_pCoreIGC->GetSide(oidRecipient)->GetName();
+						bForMe = false;
+					}
+				}
             }
             break;
 
@@ -4253,11 +4257,15 @@ void      WinTrekClient::ReceiveChat(IshipIGC*   pshipSender,
                 else
                 {
                     pshipRecipient = trekClient.m_pCoreIGC->GetShip(oidRecipient);
-                    strRecipient = pshipRecipient->GetName();
-                    bForMe = false;
 
-                    if ((cid == c_cidDefault) && pmodelTarget)
-                        cid = pshipRecipient->GetDefaultOrder(pmodelTarget);
+					if (pshipRecipient != nullptr)
+					{
+						strRecipient = pshipRecipient->GetName();
+						bForMe = false;
+
+						if ((cid == c_cidDefault) && pmodelTarget)
+							cid = pshipRecipient->GetDefaultOrder(pmodelTarget);
+					}
                 }
             }
             break;
