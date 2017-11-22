@@ -705,6 +705,20 @@ bool Win32App::EnforceFilter(bool bEnforce)
 
 }
 
+static HANDLE g_steamCallbackThread;
+static bool g_shutdownFlag = false;
+
+static DWORD WINAPI SteamCallbackThread(LPVOID pThreadParameter)
+{
+	while (g_shutdownFlag == false)
+	{
+		SteamAPI_RunCallbacks();
+		Sleep(100);
+	}
+
+	return 0;
+}
+
 //////////////////////////////////////////////////////////////////////////////
 //
 // Win Main
@@ -742,11 +756,16 @@ __declspec(dllexport) int WINAPI Win32Main(HINSTANCE hInstance, HINSTANCE hPrevI
             //
 
             if (SUCCEEDED(hr) && S_FALSE != hr) {
+
+				DWORD dum;
+				g_steamCallbackThread = CreateThread(NULL, 0, SteamCallbackThread, (void*)nullptr, 0, &dum);
+
                 Window::MessageLoop();
             }
 
             g_papp->Terminate();
             Window::StaticTerminate();
+			g_shutdownFlag = true;
 
             #ifdef _DEBUG
                 TerminateDebugf();
