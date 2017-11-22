@@ -3,7 +3,7 @@
 **
 **  File:    igc.h
 **
-**  Author: 
+**  Author:
 **
 **  Description:
 **      Interface decriptions for the igc library. This file was created by the ATL wizard.
@@ -12,6 +12,15 @@
 */
 #ifndef IGC_H
 #define IGC_H
+
+#ifndef COLORVALUE
+	typedef struct COLORVALUE {
+		float r;
+		float g;
+		float b;
+		float a;
+	} COLORVALUE;
+#endif
 
 const float c_fPedestalOffset = 2000.0f;
 const float c_fFlagOffset = 50.0f;
@@ -96,6 +105,7 @@ const FloatConstantID    c_fcidClusterDivisor       = 38;
 
 const FloatConstantID    c_fcidMax                  = 40;
 
+
 //
 // Note: if you add or change any new ObjectTypes, then please notify
 // Mark C or John T so that AGCIDL.idl will be updated.
@@ -159,25 +169,25 @@ const ObjectType    OT_constants        = 34;
 const ObjectType    OT_allsrvUser       = 35; // used by the admin object model
 const ObjectType    OT_Max              = 36;// don't put anything after this
                                              // OT_Max should be less then 256 for
-                                             // AGC event firing. 
+                                             // AGC event firing.
 
-const   __int64         c_maskStaticTypes = (__int64(1) << __int64(OT_projectileType)) | 
-                                            (__int64(1) << __int64(OT_treasureSet)) | 
-                                            (__int64(1) << __int64(OT_hullType)) | 
-                                            (__int64(1) << __int64(OT_partType)) | 
-                                            (__int64(1) << __int64(OT_missileType)) | 
-                                            (__int64(1) << __int64(OT_mineType)) | 
-                                            (__int64(1) << __int64(OT_probeType)) | 
-                                            (__int64(1) << __int64(OT_civilization)) | 
-                                            (__int64(1) << __int64(OT_stationType)) | 
-                                            (__int64(1) << __int64(OT_development)) | 
-                                            (__int64(1) << __int64(OT_droneType)) | 
-                                            (__int64(1) << __int64(OT_chaffType)) | 
-                                            (__int64(1) << __int64(OT_constants)); 
+const   __int64         c_maskStaticTypes = (__int64(1) << __int64(OT_projectileType)) |
+                                            (__int64(1) << __int64(OT_treasureSet)) |
+                                            (__int64(1) << __int64(OT_hullType)) |
+                                            (__int64(1) << __int64(OT_partType)) |
+                                            (__int64(1) << __int64(OT_missileType)) |
+                                            (__int64(1) << __int64(OT_mineType)) |
+                                            (__int64(1) << __int64(OT_probeType)) |
+                                            (__int64(1) << __int64(OT_civilization)) |
+                                            (__int64(1) << __int64(OT_stationType)) |
+                                            (__int64(1) << __int64(OT_development)) |
+                                            (__int64(1) << __int64(OT_droneType)) |
+                                            (__int64(1) << __int64(OT_chaffType)) |
+                                            (__int64(1) << __int64(OT_constants));
 
-const   __int64         c_maskMapTypes =    (__int64(1) << __int64(OT_asteroid)) | 
-                                            (__int64(1) << __int64(OT_station))  | 
-                                            (__int64(1) << __int64(OT_cluster))  | 
+const   __int64         c_maskMapTypes =    (__int64(1) << __int64(OT_asteroid)) |
+                                            (__int64(1) << __int64(OT_station))  |
+                                            (__int64(1) << __int64(OT_cluster))  |
                                             (__int64(1) << __int64(OT_mine))     |
                                             (__int64(1) << __int64(OT_probe))    |
                                             (__int64(1) << __int64(OT_treasure)) |
@@ -304,14 +314,14 @@ const TrekKey TK_TargetHostile              = 91;  // Target the ship causing mo
 const TrekKey TK_Suicide                    = 92;  // Kill yourself
 const TrekKey TK_ToggleGrid                 = 93;  // Toggle visible grid in combat view
 const TrekKey TK_ToggleCloak                = 94;  // Toggle cloaking
-const TrekKey TK_DropMine                   = 95;  // Drop a minefield 
-const TrekKey TK_Ripcord                    = 96;  // Ripcord         
+const TrekKey TK_DropMine                   = 95;  // Drop a minefield
+const TrekKey TK_Ripcord                    = 96;  // Ripcord
 const TrekKey TK_ViewRearLeft               = 97;  // Look back and to the left
 const TrekKey TK_ViewRearRight              = 99;  // Look back and to the right
 const TrekKey TK_Obsolete1                  = 99;  // Not used - feel free to reuse
 const TrekKey TK_TargetSelf                 =100;  // Target myself
 const TrekKey TK_ToggleCollisions	        =101;  // Toggle collision detection
-const TrekKey TK_OccupyNextTurret           =102;  // Occupy the next available turret position 
+const TrekKey TK_OccupyNextTurret           =102;  // Occupy the next available turret position
 const TrekKey TK_TargetNothing              =103;  // Reset target so that nothing is targeted
 const TrekKey TK_MatchSpeed                 =104;  // Match speed with target
 const TrekKey TK_ChatPageUp                 =105;  // Scroll the chat pane one page up
@@ -433,7 +443,11 @@ const TrekKey TK_VoteNo                         = 217; // Vote No on the current
 
 const TrekKey TK_ScrnShot                       = 218; // Take a screen shot
 
-const TrekKey TK_Max                            = 219; // Must be last trekkey
+const TrekKey TK_TargetAlliedBase				= 219; //Imago 8/1/09
+const TrekKey TK_TargetAlliedBaseNearest		= 220;
+const TrekKey TK_TargetAlliedBasePrev			= 221;
+
+const TrekKey TK_Max                            = 222; // Must be last trekkey
 
 typedef short   SoundID;
 typedef short   VoiceID;
@@ -448,7 +462,7 @@ enum {
 //Redefined data types (so we can change them later)
 const int NA = -1; // meaning unspecified, none, or all.
 const float fNA = -1; // To support supression of compiler warnings.  Floats should probably all be doubles anyways, but hey.  --Dhauzimmer, 8/14/04
- 
+
 typedef long            MissionID;
 
 //*ID are unique IDs for something
@@ -476,12 +490,14 @@ typedef ObjectID        ExpendableTypeID;
 typedef ObjectID        CivID;
 typedef ObjectID        MunitionID;
 typedef ObjectID        TreasureSetID;
+const ObjectID         RANDOM_ID = 9999;  //Xynth #170 8/2010
 typedef int             SquadID;
 
 typedef ObjectID        WingID;
 const WingID            c_widMax = 10;
 
 const SideID c_cSidesMax = 6;
+const int c_cAlliancesMax = c_cSidesMax/2; // #ALLY max alliances possible (distinct groups of allied teams)
 
 extern const char*      c_pszWingName[c_widMax];
 
@@ -514,6 +530,11 @@ const EquipmentType   ET_Pack           = 6;
 const EquipmentType   ET_Afterburner    = 7;
 const EquipmentType   ET_MAX            = 8;
 
+typedef short     AbilityType; // Imago added
+const AbilityType	  AT_Hull			= 0;
+const AbilityType	  AT_Station		= 1;
+const AbilityType	  AT_Expendable		= 2;
+const AbilityType	  AT_Asteroid		= 3;
 
 
 typedef char     PackType;
@@ -610,7 +631,7 @@ const WarningMask   c_wmCrowdedSector = 0x02;
 typedef char BuyableGroupID;
 
 /*
-� Max Speed: Up the sides maximum speed 
+� Max Speed: Up the sides maximum speed
 � Rate of Yaw: Increase angle of turn per sec
 � Rate of Pitch: Increase angle of turn per sec
 � Rate of acceleration: Increase your acceleration
@@ -672,6 +693,25 @@ const unsigned char             c_ucRadarOffScreen = 2;
 
 typedef short                   PartMask;
 
+//Imago has "generic" part mask flags 7/29/08
+typedef PartMask				PartBitMask;
+const PartBitMask				c_pbm1	= 0x01;
+const PartBitMask				c_pbm2  = 0x02;
+const PartBitMask				c_pbm3  = 0x04;
+const PartBitMask				c_pbm4  = 0x08;
+const PartBitMask				c_pbm5  = 0x10;
+const PartBitMask				c_pbm6  = 0x20;
+const PartBitMask				c_pbm7  = 0x40;
+const PartBitMask				c_pbm8  = 0x80;
+const PartBitMask				c_pbm9  = 0x100;
+const PartBitMask				c_pbm10  = 0x200;
+const PartBitMask				c_pbm11  = 0x400;
+const PartBitMask				c_pbm12  = 0x800;
+const PartBitMask				c_pbm13  = 0x1000;
+const PartBitMask				c_pbm14  = 0x2000;
+const PartBitMask				c_pbm15  = 0x4000;
+const PartBitMask				c_pbm16  = (short)0x8000;
+
 typedef short                   AbilityBitMask;
 
 typedef AbilityBitMask          HullAbilityBitMask;
@@ -700,11 +740,11 @@ const StationAbilityBitMask     c_sabmRipcord               = 0x08;      //     
 const StationAbilityBitMask     c_sabmCapture               = 0x10;      //           be captured
 const StationAbilityBitMask     c_sabmLand                  = 0x20;      //           land at
 const StationAbilityBitMask     c_sabmRepair                = 0x40;      //           get repaired
-const StationAbilityBitMask     c_sabmRemoteLeadIndicator   = 0x80;      //           shows up in the loadout menu of stations
+const StationAbilityBitMask     c_sabmRemoteLeadIndicator   = 0x80;      //           relay lead indicator
 const StationAbilityBitMask     c_sabmReload                = 0x100;     //           free fuel and ammo on launch
 const StationAbilityBitMask     c_sabmFlag                  = 0x200;     //           counts for victory
 const StationAbilityBitMask     c_sabmPedestal              = 0x400;     //           be a pedestal for a flag
-const StationAbilityBitMask     c_sabmTeleportUnload        = 0x800;     //           be a pedestal for a flag
+const StationAbilityBitMask     c_sabmTeleportUnload        = 0x800;     //           offload mined materials without docking
 const StationAbilityBitMask     c_sabmCapLand               = 0x1000;    //           land capital ships
 const StationAbilityBitMask     c_sabmRescue                = 0x2000;    //           rescue pods
 const StationAbilityBitMask     c_sabmRescueAny             = 0x4000;    //           not used (but reserved for pods)
@@ -733,6 +773,11 @@ const ExpendableAbilityBitMask  c_eabmShootOnlyTarget = 0x1000;
 const ExpendableAbilityBitMask  c_eabmRescue          = c_sabmRescue;     //0x2000 Rescue lifepods that collide with it
 const ExpendableAbilityBitMask  c_eabmRescueAny       = c_sabmRescueAny;  //0x4000 Rescue any lifepod that collide with it
 
+typedef short AchievementMask;
+const AchievementMask c_achmProbeKill = 0x01;
+const AchievementMask c_achmProbeSpot = 0x02;
+const AchievementMask c_achmNewRepair = 0x04;
+
 enum    ShipControlStateIGC
 {
     selectedWeaponOneIGC        =  1,
@@ -748,9 +793,10 @@ enum    ShipControlStateIGC
     upButtonIGC                 =   32 * coastButtonIGC,            //       up
     downButtonIGC               =   64 * coastButtonIGC,            //       down
     afterburnerButtonIGC        =  128 * coastButtonIGC,            //       with afterburners
+	keyMaskIGC					=  (256 * coastButtonIGC - 4),		//Xynth #210 coastButton-afterburnerbutton
     drillingMaskIGC             =  256 * coastButtonIGC,            //on rails to avoid collisions
     cloakActiveIGC              =  512 * coastButtonIGC,            //Activating the cloak
-    unused0000001IGC            = 1024 * coastButtonIGC,            //no longer used ... reuse?
+    droneRipMaskIGC             = 1024 * coastButtonIGC,            //Xynth #47 7/2010
     miningMaskIGC               = 2048 * coastButtonIGC,            //Play mine effect
     buttonsMaskIGC              = 4095 * coastButtonIGC,            //12 possible state buttons
 
@@ -808,9 +854,9 @@ struct  CommandData
     Match   MatchCommand(const char*    szString) const
     {
         assert (szString);
-        const char* p1 = szString; 
+        const char* p1 = szString;
         const char* p2 = szVerb;
-        
+
         while ((*p1 != '\0') && (*p2 != '\0'))
         {
             if (tolower(*p1) != tolower(*p2))
@@ -851,7 +897,7 @@ struct GlobalAttributeSet
         {
             //Initialize();
         }
-        
+
         void    Initialize(void)
         {
             for (int i = 0; (i < c_gaMax); i++)
@@ -1033,476 +1079,475 @@ class ImapMakerIGC
 
 struct MissionParams
 {
-	//------------------------------------------------------------------------------
-	// If you add or remove properties, please update
-	// AGCGameParameters.cpp, AGCGameParameters.h, and AGCIDL.h.
-	//
-	//------------------------------------------------------------------------------
-	char        strGameName[c_cbGameName];              //Name of game
-	char        szIGCStaticFile[c_cbFileName];          //Name of static IGC file
-	char        szCustomMapFile[c_cbFileName];          //Name of custom Map file; used only if not blank
-	char        strGamePassword[c_cbGamePassword];      //Password
-	bool        bEjectPods : 1;                //Are eject pods used
-	bool        bInvulnerableStations : 1;              //Do station NOT take damage
-	bool        bShowMap : 1;                //Show all warps at the start of the game
-	bool        bAllowPrivateTeams : 1;
-	bool        bAllowEmptyTeams : 1;                //Allow teams without players
-	bool		bAllowAlliedRip : 1;				//Imago 7/8/09 ALLY
-	bool		bAllowAlliedViz : 1;				//Imago 7/11/09 ALLY
-	bool        bAllowDevelopments : 1;                //Allow investment in tech
-	bool        bAllowShipyardPath : 1;                //Allow building Shipyards
-	bool        bAllowTacticalPath : 1;                //Allow building Tactical Labs
-	bool        bAllowSupremacyPath : 1;                //Allow building Supremacy Centers
-	bool        bAllowExpansionPath : 1;                //Allow building Expansion Complexes
-	bool        bPowerUps : 1;                //Create treasure when a ship is destroyed
-	bool        bAllowDefections : 1;                //Allow players to switch from one team to another
-	bool        bAllowJoiners : 1;                //Allow players to join a game in progress
-	bool        bLockLobby : 1;                //Prevent new players from joining a game
-	bool        bLockSides : 1;                //Prevent players from switching sides
-	bool        bLockTeamSettings : 1;                //Prevent players from changing team attributes like name
-	bool        bLockGameOpen : 1;                //Prevent players from limiting the size of the game
-	bool        bStations : 1;        //??
-	bool        bScoresCount : 1;        //??
-	bool        bSquadGame : 1;        //??
-	bool        bDrones : 1;        //??
-	bool        iResources : 1;        //??
-	bool        bResourceAmountsVisible : 1;    //??
-	bool        bRandomWormholes : 1;        //??
-	bool        bNoTeams : 1;        //??
-	bool        bShowHomeSector : 1;                //Show everything in a player's home sector at start of game
-	bool        bAllowFriendlyFire : 1;                //Allow friends to damage friends
-	bool        bObjectModelCreated : 1;                //Was this game created by admin tools or the server app?
-	bool        bLobbiedGame : 1;                //Is this game listed in an internet lobby?
-	bool        bClubGame : 1;                //Is this game on the zone club?
-	bool        bAutoStart : 1;                //Does the game start automatically when all sides are ready?
-	bool        bAutoRestart : 1;                //Does the game restart automatically
-	bool        bAllowRestart : 1;                //Can the game be restarted at all?
-	bool        bExperimental : 1;                // mmf 10/07 Experimental game type
+    //------------------------------------------------------------------------------
+    // If you add or remove properties, please update
+    // AGCGameParameters.cpp, AGCGameParameters.h, and AGCIDL.h.
+    //
+    //------------------------------------------------------------------------------
+    char        strGameName[c_cbGameName];              //Name of game
+    char        szIGCStaticFile[c_cbFileName];          //Name of static IGC file
+    char        szCustomMapFile[c_cbFileName];          //Name of custom Map file; used only if not blank
+    char        strGamePassword[c_cbGamePassword];      //Password
+    bool        bEjectPods          : 1;                //Are eject pods used
+    bool        bInvulnerableStations : 1;              //Do station NOT take damage
+    bool        bShowMap            : 1;                //Show all warps at the start of the game
+    bool        bAllowPrivateTeams  : 1;
+    bool        bAllowEmptyTeams    : 1;                //Allow teams without players
+	bool		bAllowAlliedRip		: 1;				//Imago 7/8/09 ALLY
+	bool		bAllowAlliedViz		: 1;				//Imago 7/11/09 ALLY
+    bool        bAllowDevelopments  : 1;                //Allow investment in tech
+    bool        bAllowShipyardPath  : 1;                //Allow building Shipyards
+    bool        bAllowTacticalPath  : 1;                //Allow building Tactical Labs
+    bool        bAllowSupremacyPath : 1;                //Allow building Supremacy Centers
+    bool        bAllowExpansionPath : 1;                //Allow building Expansion Complexes
+    bool        bPowerUps           : 1;                //Create treasure when a ship is destroyed
+    bool        bAllowDefections    : 1;                //Allow players to switch from one team to another
+    bool        bAllowJoiners       : 1;                //Allow players to join a game in progress
+    bool        bLockLobby          : 1;                //Prevent new players from joining a game
+    bool        bLockSides          : 1;                //Prevent players from switching sides
+    bool        bLockTeamSettings   : 1;                //Prevent players from changing team attributes like name
+    bool        bLockGameOpen       : 1;                //Prevent players from limiting the size of the game
+    bool        bStations           : 1;        //??
+    bool        bScoresCount        : 1;        //??
+    bool        bSquadGame          : 1;        //??
+    bool        bDrones             : 1;        //??
+    bool        iResources          : 1;        //??
+    bool        bResourceAmountsVisible : 1;    //??
+    bool        bRandomWormholes    : 1;        //??
+    bool        bNoTeams            : 1;        //??
+    bool        bShowHomeSector     : 1;                //Show everything in a player's home sector at start of game
+    bool        bAllowFriendlyFire  : 1;                //Allow friends to damage friends
+    bool        bObjectModelCreated : 1;                //Was this game created by admin tools or the server app?
+    bool        bLobbiedGame        : 1;                //Is this game listed in an internet lobby?
+    bool        bClubGame           : 1;                //Is this game on the zone club?
+    bool        bAutoStart          : 1;                //Does the game start automatically when all sides are ready?
+    bool        bAutoRestart        : 1;                //Does the game restart automatically
+    bool        bAllowRestart       : 1;                //Can the game be restarted at all?
+	bool        bExperimental       : 1;                // mmf 10/07 Experimental game type
 	float       fGoalTeamMoney;                         //Cost of win the game tech = fGoalTeamMoney * WinTheGameMoney, 0 == no win the game tech
-	int         verIGCcore;                             //this is set only by the server, so the client can know whether it needs to get a new igc static core
-	float       nPlayerSectorTreasureRate;              //# of treasures that generate/second in player sectors
-	float       nNeutralSectorTreasureRate;             //                                       neutral
-	float       dtGameLength;                           //Seconds till end of game, 0 == no limit
-	float       fHe3Density;                            //Mulitplier on He3 found at asteroids
-	Money       m_killPenalty;                  //Not used
-	Money       m_killReward;                   //Not used
-	Money       m_ejectPenalty;                 //Not used
-	Money       m_ejectReward;                  //Not used
+    int         verIGCcore;                             //this is set only by the server, so the client can know whether it needs to get a new igc static core
+    float       nPlayerSectorTreasureRate;              //# of treasures that generate/second in player sectors
+    float       nNeutralSectorTreasureRate;             //                                       neutral
+    float       dtGameLength;                           //Seconds till end of game, 0 == no limit
+    float       fHe3Density;                            //Mulitplier on He3 found at asteroids
+    Money       m_killPenalty;                  //Not used
+    Money       m_killReward;                   //Not used
+    Money       m_ejectPenalty;                 //Not used
+    Money       m_ejectReward;                  //Not used
 
-	Time        timeStart;                              //Time at which the game started
-	float       fStartCountdown;                        //Countdown (seconds) between automatically restarting missions
-	float       fRestartCountdown;                      //Countdown (seconds) between automatically restarting missions
+    Time        timeStart;                              //Time at which the game started
+    float       fStartCountdown;                        //Countdown (seconds) between automatically restarting missions
+    float       fRestartCountdown;                      //Countdown (seconds) between automatically restarting missions
 
-	CivID       rgCivID[c_cSidesMax];                   //IDs within the szIGCCore data set
-	short       iGoalConquestPercentage;                //% of flagged stations that need to be held to win the game
-	short       iGoalTerritoryPercentage;               //sole control of % of territories
-	short       iGoalArtifactsPercentage;       //Not used
-	short       nGoalFlagsCount;                        //# of enemy flags returned to station to win
-	short       nGoalArtifactsCount;                    //# of neutral artifacts returned to station to win
-	short       nGoalTeamKills;                         //Number of kills required to end the game
-	short       tsiPlayerStart;                         //Treasure index for random treasures that start in player sectors. NA == none
-	short       tsiNeutralStart;                        //                                                  neutral
-	short       tsiPlayerRegenerate;                    //Treasure index for random treasures that spawn in player sectors, NA = none
-	short       tsiNeutralRegenerate;                   //                                                  neutral
-	float       fStartingMoney;                         //Multiplier on team starting money
-	short       iLives;                                 //Player must die more than this number of times to be exit, c_cUnlimitedLives = unlimited
-	MapMakerID  mmMapType;                              //Map type
-	short       iMapSize;								//KGJV: non zero value = 2 starting garrisons
-	short       iRandomEncounters;                      //Use to indicate how many alephs are randomly removed
-	short       bNeutralSectors;                //Not used
-	short       iAlephPositioning;              //Not used
-	short       iAlephsPerSector;               //Not used
-	short       nTeams;                                 //Number of sides in the game
-	short       iMinRank;                               //Minimum player rank
-	short       iMaxRank;                               //Maximum player rank
-	int         nInvitationListID;                      // zero means no invitation required
+    CivID       rgCivID[c_cSidesMax];                   //IDs within the szIGCCore data set
+    short       iGoalConquestPercentage;                //% of flagged stations that need to be held to win the game
+    short       iGoalTerritoryPercentage;               //sole control of % of territories
+    short       iGoalArtifactsPercentage;       //Not used
+    short       nGoalFlagsCount;                        //# of enemy flags returned to station to win
+    short       nGoalArtifactsCount;                    //# of neutral artifacts returned to station to win
+    short       nGoalTeamKills;                         //Number of kills required to end the game
+    short       tsiPlayerStart;                         //Treasure index for random treasures that start in player sectors. NA == none
+    short       tsiNeutralStart;                        //                                                  neutral
+    short       tsiPlayerRegenerate;                    //Treasure index for random treasures that spawn in player sectors, NA = none
+    short       tsiNeutralRegenerate;                   //                                                  neutral
+    float       fStartingMoney;                         //Multiplier on team starting money
+    short       iLives;                                 //Player must die more than this number of times to be exit, c_cUnlimitedLives = unlimited
+    MapMakerID  mmMapType;                              //Map type
+    short       iMapSize;								//KGJV: non zero value = 2 starting garrisons
+    short       iRandomEncounters;                      //Use to indicate how many alephs are randomly removed
+    short       bNeutralSectors;                //Not used
+    short       iAlephPositioning;              //Not used
+    short       iAlephsPerSector;               //Not used
+    short       nTeams;                                 //Number of sides in the game
+    short       iMinRank;                               //Minimum player rank
+    short       iMaxRank;                               //Maximum player rank
+    int         nInvitationListID;                      // zero means no invitation required
 
-	short       iMaxImbalance;                          //Maximum allowed difference between smallest and largest team
+    short       iMaxImbalance;                          //Maximum allowed difference between smallest and largest team
 
-	short       nPlayerSectorAsteroids;                 //# generic asteroids in player sector
-	short       nNeutralSectorAsteroids;                //                       neutral
+    short       nPlayerSectorAsteroids;                 //# generic asteroids in player sector
+    short       nNeutralSectorAsteroids;                //                       neutral
 
-	short       nPlayerSectorTreasures;                 //# of treasures placed in player sector to start with
-	short       nNeutralSectorTreasures;                //                         neutral
+    short       nPlayerSectorTreasures;                 //# of treasures placed in player sector to start with
+    short       nNeutralSectorTreasures;                //                         neutral
 
-	short       nPlayerSectorMineableAsteroids;         //# of He3 asteroids in player sector
-	short       nNeutralSectorMineableAsteroids;        //                      neutral
+    short       nPlayerSectorMineableAsteroids;         //# of He3 asteroids in player sector
+    short       nNeutralSectorMineableAsteroids;        //                      neutral
 
-	short       nPlayerSectorSpecialAsteroids;          //# of special asteroids (C, U or Si) in player sector
-	short       nNeutralSectorSpecialAsteroids;         //                                       neutral
+    short       nPlayerSectorSpecialAsteroids;          //# of special asteroids (C, U or Si) in player sector
+    short       nNeutralSectorSpecialAsteroids;         //                                       neutral
 
-	unsigned char nMinPlayersPerTeam;                   //Min players on team
-	unsigned char nMaxPlayersPerTeam;                   //Max players on team
+    unsigned char nMinPlayersPerTeam;                   //Min players on team
+    unsigned char nMaxPlayersPerTeam;                   //Max players on team
 
-	char        nInitialMinersPerTeam;                  //Number of miners to start the game with
-	char        nMaxDronesPerTeam;                      //Maximum # of drones a team is allowed to control
+    char        nInitialMinersPerTeam;                  //Number of miners to start the game with
+    char        nMaxDronesPerTeam;                      //Maximum # of drones a team is allowed to control
 
-	short       nTotalMaxPlayersPerGame;                //Maximum # of players per game (mostly used for StandAlone server)
+    short       nTotalMaxPlayersPerGame;                //Maximum # of players per game (mostly used for StandAlone server)
 
-	MissionParams()
-	{
-		Reset();
-	}
+    MissionParams()
+    {
+        Reset();
+    }
 
-	void    Reset(void)
-	{
-		ZeroMemory(this, sizeof(*this));
-		//
-		// default to reasonable values
-		//
-		strcpy(strGameName, "Uninitialized Game Name");
-		szIGCStaticFile[0] = '\0';
-		m_killPenalty = 0;
-		m_killReward = 0;
+    void    Reset(void)
+    {
+        ZeroMemory(this, sizeof(*this));
+        //
+        // default to reasonable values
+        //
+        strcpy(strGameName, "Uninitialized Game Name");
+        szIGCStaticFile[0] = '\0';
+        m_killPenalty                   = 0;
+        m_killReward                    = 0;
 
-		m_ejectPenalty = 0;
-		m_ejectReward = 0;
+        m_ejectPenalty                  = 0;
+        m_ejectReward                   = 0;
 
-		bEjectPods = true;
-		bInvulnerableStations = false;
-		bAllowPrivateTeams = true;
-		bAllowEmptyTeams = false;
-		bAllowAlliedRip = false; //imago 7/8/09 ALLY
-		bAllowAlliedViz = false; //imago 7/8/09 ALLY 7/17/09 done testing, defaults off unless allies
-		bShowMap = false;
-		bAllowDevelopments = true;
-		bAllowShipyardPath = true;
-		bAllowTacticalPath = true;
-		bAllowSupremacyPath = true;
-		bAllowExpansionPath = true;
-		bPowerUps = true;
-		bAllowJoiners = true;
-		bLockLobby = false;
-		bLockSides = false;
-		bLockTeamSettings = false;
-		bAllowDefections = false;
-		bStations = true;
-		bScoresCount = true;
-		bSquadGame = false;
-		bDrones = true;
-		iResources = 0;
-		bResourceAmountsVisible = true;
-		bRandomWormholes = true;
-		bNoTeams = false;
-		bObjectModelCreated = false;
-		bLobbiedGame = false;
-		bClubGame = false;
-		bAutoStart = false;
-		bAutoRestart = false;
-		bAllowRestart = true;
-		bExperimental = false; // mmf 10/07 Experimental game type
-		nInvitationListID = 0;
+        bEjectPods                      = true ;
+        bInvulnerableStations           = false;
+        bAllowPrivateTeams              = true ;
+        bAllowEmptyTeams                = false;
+		bAllowAlliedRip	                = false; //imago 7/8/09 ALLY
+		bAllowAlliedViz	                = false; //imago 7/8/09 ALLY 7/17/09 done testing, defaults off unless allies
+        bShowMap                        = false;
+        bAllowDevelopments              = true ;
+        bAllowShipyardPath              = true ;
+        bAllowTacticalPath              = true ;
+        bAllowSupremacyPath             = true ;
+        bAllowExpansionPath             = true ;
+        bPowerUps                       = true ;
+        bAllowJoiners                   = true ;
+        bLockLobby                      = false;
+        bLockSides                      = false;
+        bLockTeamSettings               = false;
+        bAllowDefections                = false;
+        bStations                       = true ;
+        bScoresCount                    = true;
+        bSquadGame                      = false;
+        bDrones                         = true ;
+        iResources                      = 0;
+        bResourceAmountsVisible         = true ;
+        bRandomWormholes                = true ;
+        bNoTeams                        = false;
+        bObjectModelCreated             = false;
+        bLobbiedGame                    = false;
+        bClubGame                       = false;
+        bAutoStart                      = false;
+        bAutoRestart                    = false;
+        bAllowRestart                   = true;
+		bExperimental                   = false; // mmf 10/07 Experimental game type
+        nInvitationListID               = 0;
 
-		fStartCountdown = 15.0f;
-		fRestartCountdown = 60.0f;
+        fStartCountdown                 = 15.0f;
+        fRestartCountdown               = 60.0f;
 
-		//
-		// Assign to NA for now, this cues the mission maker to reset it later
-		//
-		for (int iSide = 0; iSide < c_cSidesMax; iSide++)
-		{
-			rgCivID[iSide] = NA;
-		}
+        //
+        // Assign to NA for now, this cues the mission maker to reset it later
+        //
+        for (int iSide = 0; iSide < c_cSidesMax; iSide++)
+        {
+            rgCivID[iSide] = NA;
+        }
 
-		fHe3Density = 1.0f;
-		fStartingMoney = 1.0f;
-		fGoalTeamMoney = 0;
-		tsiPlayerStart = 1;
-		tsiNeutralStart = 1;
-		tsiPlayerRegenerate = 1;
-		tsiNeutralRegenerate = 1;
-		iLives = c_cUnlimitedLives;
-		nGoalTeamKills = 0;
-		mmMapType = c_mmHiLo;
-		iMapSize = 0;
-		iRandomEncounters = 0;
-		bNeutralSectors = true;
-		iAlephPositioning = 0;
-		iAlephsPerSector = 0;
-		nTeams = 2;
-		iMinRank = -1;
-		iMaxRank = 1000;
+        fHe3Density                     = 1.0f;
+        fStartingMoney                  = 1.0f;
+        fGoalTeamMoney                  = 0;
+        tsiPlayerStart                  = 1;
+        tsiNeutralStart                 = 1;
+        tsiPlayerRegenerate             = 1;
+        tsiNeutralRegenerate            = 1;
+        iLives                          = c_cUnlimitedLives;
+        nGoalTeamKills                  = 0;
+        mmMapType                       = c_mmHiLo;
+        iMapSize                        = 0;
+        iRandomEncounters               = 0;
+        bNeutralSectors                 = true;
+        iAlephPositioning               = 0;
+        iAlephsPerSector                = 0;
+        nTeams                          = 2;
+        iMinRank                        = -1;
+        iMaxRank                        = 1000;
 
-		iMaxImbalance = 1;
+        iMaxImbalance                   = 1;
 
-		dtGameLength = 0.0f;
+        dtGameLength                    = 0.0f;
 
-		iGoalConquestPercentage = 100;
-		iGoalTerritoryPercentage = 100;
-		iGoalArtifactsPercentage = 100;
-		nGoalFlagsCount = 0;
-		nGoalArtifactsCount = 0;
+        iGoalConquestPercentage         = 100;
+        iGoalTerritoryPercentage        = 100;
+        iGoalArtifactsPercentage        = 100;
+        nGoalFlagsCount                 = 0;
+        nGoalArtifactsCount             = 0;
 
-		bShowHomeSector = false;
+        bShowHomeSector                 = false;
 
-		nPlayerSectorAsteroids = 20;
-		nNeutralSectorAsteroids = 20;
+        nPlayerSectorAsteroids          = 20;
+        nNeutralSectorAsteroids         = 20;
 
-		nPlayerSectorTreasures = 0;
-		nNeutralSectorTreasures = 5;
+        nPlayerSectorTreasures          = 0;
+        nNeutralSectorTreasures         = 5;
 
-		nPlayerSectorTreasureRate = 0.2f / 60.0f;  //0.2 per minute == 0.2/60 per second
-		nNeutralSectorTreasureRate = 0.5f / 60.0f;
+        nPlayerSectorTreasureRate       = 0.2f / 60.0f;  //0.2 per minute == 0.2/60 per second
+        nNeutralSectorTreasureRate      = 0.5f / 60.0f;
 
-		nPlayerSectorMineableAsteroids = 2;
-		nNeutralSectorMineableAsteroids = 4;
+        nPlayerSectorMineableAsteroids  = 2;
+        nNeutralSectorMineableAsteroids = 4;
 
-		nPlayerSectorSpecialAsteroids = 1;
-		nNeutralSectorSpecialAsteroids = 1;
+        nPlayerSectorSpecialAsteroids   = 1;
+        nNeutralSectorSpecialAsteroids  = 1;
 
-		nInitialMinersPerTeam = 1;
-		nMaxDronesPerTeam = 4;
+        nInitialMinersPerTeam           = 1;
+        nMaxDronesPerTeam               = 4;
 
-		nMinPlayersPerTeam = 1;   // KGJV #114 changed
-		nMaxPlayersPerTeam = 100; // KGJV #114 changed
+        nMinPlayersPerTeam              = 1;   // KGJV #114 changed
+        nMaxPlayersPerTeam              = 100; // KGJV #114 changed
 
-		nTotalMaxPlayersPerGame = 0x7FFF;
-	}
+        nTotalMaxPlayersPerGame         = 0x7FFF;
+    }
 
-	const char* Invalid(bool bFromClient = false) const
-	{
-		// do some data validation... should do this is a cleaner way
+    const char* Invalid(bool bFromClient = false) const
+    {
+        // do some data validation... should do this is a cleaner way
 
-		if (bFromClient)
-		{
-			if ((nMaxPlayersPerTeam > 100) ||
-				(nMaxPlayersPerTeam < 1))
-			{
-				return "Maximum number of players must be between 1 and 100.";
-			}
-			else if (IsNoWinningConditionsGame())
-			{
-				return "You must choose one or more winning conditions.";
-			}
+        if (bFromClient)
+        {
+            if ((nMaxPlayersPerTeam > 100) ||
+                 (nMaxPlayersPerTeam < 1))
+            {
+                return "Maximum number of players must be between 1 and 100.";
+            }
+            else if (IsNoWinningConditionsGame())
+            {
+                return "You must choose one or more winning conditions.";
+            }
 			else if (bAutoRestart || (bObjectModelCreated && bClubGame)) // KGJV #62 || bAllowEmptyTeams)
-			{
-				return "HACK: one or more admin-only flags are set.";
-			}
-		}
+            {
+                return "HACK: one or more admin-only flags are set.";
+            }
+        }
 
-		if (nInitialMinersPerTeam > nMaxDronesPerTeam)
-		{
-			return "Initial miners per team must be less than max miners per team.";
-		}
-		else if (nMaxDronesPerTeam > 10)
-		{
-			return "Max drones per team must be less than or equal to 10.";
-		}
-		else if (nNeutralSectorSpecialAsteroids > 9)
-		{
-			return "NeutralSectorSpecialAsteroids must be less than 10.";
-		}
-		else if (nPlayerSectorSpecialAsteroids > 9)
-		{
-			return "PlayerSectorSpecialAsteroids must be less than 10.";
-		}
-		else if (nNeutralSectorMineableAsteroids > 9)
-		{
-			return "NeutralSectorMineableAsteroids must be less than 10.";
-		}
-		else if (nPlayerSectorMineableAsteroids > 9)
-		{
-			return "PlayerSectorMineableAsteroids must be less than 10.";
-		}
-		else if (nNeutralSectorTreasureRate > 1.0f / 60.0f)
-		{
-			return "NeutralSectorTreasureRate must be less than 1/60.";
-		}
-		else if (nPlayerSectorTreasureRate > 1.0f / 60.0f)
-		{
-			return "PlayerSectorTreasureRate must be less than 1/60.";
-		}
-		else if (nNeutralSectorTreasures > 20)
-		{
-			return "NeutralSectorTreasures must be less than 21.";
-		}
-		else if (nPlayerSectorTreasures > 20)
-		{
-			return "PlayerSectorTreasures must be less than 21.";
-		}
-		else if (nNeutralSectorAsteroids > 40)
-		{
-			return "NeutralSectorAsteroids must be less than 40.";
-		}
-		else if (nPlayerSectorAsteroids > 40)
-		{
-			return "PlayerSectorAsteroids must be less than 40.";
-		}
-		else if ((nGoalArtifactsCount < 0) || (nGoalArtifactsCount > 100))
-		{
-			return "GoalArtifactsCount must be between 0% and 100%.";
-		}
-		else if ((nGoalFlagsCount < 0) || (nGoalFlagsCount > 100))
-		{
-			return "GoalFlagsCount must be between 0% and 100%.";
-		}
-		else if ((fHe3Density < 0.0f) || (fHe3Density > 9.0f))
-		{
-			return "He3Density must be between 0 and 9.";
-		}
-		else if ((fGoalTeamMoney < 0.0f) || (fGoalTeamMoney > 9.0f))
-		{
-			return "GoalTeamMoney must be between 0 and 9.";
-		}
-		else if ((fStartingMoney < 0.0f) || (fStartingMoney > 9.0f))
-		{
-			return "StartingMoney must be between 0 and 9.";
-		}
-		else if (NULL == memchr(strGameName, 0, c_cbGameName))
-		{
-			return "invalid game name";
-		}
-		else if (NULL == memchr(szIGCStaticFile, 0, c_cbFileName))
-		{
-			return "invalid IGC static file name";
-		}
-		else if (NULL == memchr(szCustomMapFile, 0, c_cbFileName))
-		{
-			return "invalid IGC static file name";
-		}
-		else if (NULL == memchr(strGamePassword, 0, c_cbGamePassword))
-		{
-			return "invalid IGC static file name";
-		}
-		else if ((nTeams > 6) || (nTeams < 2))
-		{
-			return "Number of teams must be between 2 and 6.";
-		}
-		else if (nTotalMaxPlayersPerGame < 1)
-		{
-			return "Number of players per game must be greater than 0.";
-		}
-		else if ((nMaxPlayersPerTeam > 200) ||
-			(nMaxPlayersPerTeam < 1))
-		{
-			return "Maximum number of players must be between 1 and 200.";
-		}
-		else if (nMinPlayersPerTeam < 1)
-		{
-			return "Minimum number of players must be 1 or greater.";
-		}
-		else if (nMinPlayersPerTeam > nMaxPlayersPerTeam)
-		{
-			return "Minimum number of players must not be greater than the maximum number of players.";
-		}
+        if (nInitialMinersPerTeam > nMaxDronesPerTeam)
+        {
+            return "Initial miners per team must be less than max miners per team.";
+        }
+        else if (nMaxDronesPerTeam > 10)
+        {
+            return "Max drones per team must be less than or equal to 10.";
+        }
+        else if (nNeutralSectorSpecialAsteroids > 9)
+        {
+            return "NeutralSectorSpecialAsteroids must be less than 10.";
+        }
+        else if (nPlayerSectorSpecialAsteroids > 9)
+        {
+            return "PlayerSectorSpecialAsteroids must be less than 10.";
+        }
+        else if (nNeutralSectorMineableAsteroids > 9)
+        {
+            return "NeutralSectorMineableAsteroids must be less than 10.";
+        }
+        else if (nPlayerSectorMineableAsteroids > 9)
+        {
+            return "PlayerSectorMineableAsteroids must be less than 10.";
+        }
+        else if (nNeutralSectorTreasureRate > 1.0f/60.0f)
+        {
+            return "NeutralSectorTreasureRate must be less than 1/60.";
+        }
+        else if (nPlayerSectorTreasureRate > 1.0f/60.0f)
+        {
+            return "PlayerSectorTreasureRate must be less than 1/60.";
+        }
+        else if (nNeutralSectorTreasures > 20)
+        {
+            return "NeutralSectorTreasures must be less than 21.";
+        }
+        else if (nPlayerSectorTreasures > 20)
+        {
+            return "PlayerSectorTreasures must be less than 21.";
+        }
+        else if (nNeutralSectorAsteroids > 40)
+        {
+            return "NeutralSectorAsteroids must be less than 40.";
+        }
+        else if (nPlayerSectorAsteroids > 40)
+        {
+            return "PlayerSectorAsteroids must be less than 40.";
+        }
+        else if ((nGoalArtifactsCount < 0) || (nGoalArtifactsCount > 100))
+        {
+            return "GoalArtifactsCount must be between 0% and 100%.";
+        }
+        else if ((nGoalFlagsCount < 0) || (nGoalFlagsCount > 100))
+        {
+            return "GoalFlagsCount must be between 0% and 100%.";
+        }
+        else if ((fHe3Density < 0.0f) || (fHe3Density > 9.0f))
+        {
+            return "He3Density must be between 0 and 9.";
+        }
+        else if ((fGoalTeamMoney < 0.0f) || (fGoalTeamMoney > 9.0f))
+        {
+            return "GoalTeamMoney must be between 0 and 9.";
+        }
+        else if ((fStartingMoney < 0.0f) || (fStartingMoney > 9.0f))
+        {
+            return "StartingMoney must be between 0 and 9.";
+        }
+        else if (NULL == memchr(strGameName, 0, c_cbGameName))
+        {
+            return "invalid game name";
+        }
+        else if (NULL == memchr(szIGCStaticFile, 0, c_cbFileName))
+        {
+            return "invalid IGC static file name";
+        }
+        else if (NULL == memchr(szCustomMapFile, 0, c_cbFileName))
+        {
+            return "invalid IGC static file name";
+        }
+        else if (NULL == memchr(strGamePassword, 0, c_cbGamePassword))
+        {
+            return "invalid IGC static file name";
+        }
+        else if ((nTeams > 6) || (nTeams < 2))
+        {
+            return "Number of teams must be between 2 and 6.";
+        }
+        else if (nTotalMaxPlayersPerGame < 1)
+        {
+            return "Number of players per game must be greater than 0.";
+        }
+        else if ((nMaxPlayersPerTeam > 200) ||
+                 (nMaxPlayersPerTeam < 1))
+        {
+            return "Maximum number of players must be between 1 and 200.";
+        }
+        else if (nMinPlayersPerTeam < 1)
+        {
+            return "Minimum number of players must be 1 or greater.";
+        }
+        else if (nMinPlayersPerTeam > nMaxPlayersPerTeam)
+        {
+            return "Minimum number of players must not be greater than the maximum number of players.";
+        }
 		// BT - STEAM - Removing the limitation on defections and imbal for Steam stats. Steam 
 		// doesn't care how many teams you show up on. It's your play time that counts!
-		//      else if (bScoresCount && bAllowDefections)
-		//      {
-		//          return "Scores can't be counted for a game where defections are allowed; "
-		//              "please turn off defections or stats count.";
-		//      }
+  //      else if (bScoresCount && bAllowDefections)
+  //      {
+  //          return "Scores can't be counted for a game where defections are allowed; "
+  //              "please turn off defections or stats count.";
+  //      }
 		//// TE: Confirms that the MaxImbalance = AUTO when scores count
-		//      else if (bScoresCount && iMaxImbalance != 0x7ffe)
-		//      {
-		//          return "Scores can't be counted for a game where the MaxImbalance setting is not Auto; "
-		//              "please set the MaxImbalance setting to Auto, or turn off stats count.";
-		//      }
-		else if (IsConquestGame() && bInvulnerableStations)
-		{
-			return "You can't play a conquest game with invulnerable stations; "
-				"You must disable the conquest winning condition or turn off "
-				"the invulnerable stations option.";
-		}
-		else if (IsProsperityGame() && !bAllowDevelopments)
-		{
-			return "You can't play a prosperity game with developments turned off; "
-				"You must disable the prosperity winning condition or turn on "
-				"developments.";
-		}
-		else if (nPlayerSectorTreasureRate > 0.01 || nNeutralSectorTreasureRate > 0.01)
-		{
-			return "Treasure rate(s) too high; max is 0.01";
-		}
-		else if (IsTerritoryGame())
-		{
-			if (mmMapType == c_mmBrawl)
-				return "Brawl maps can not have a territory win condition";
-			else if ((nTeams == 2) &&
-				((mmMapType == c_mmSingleRing) ||
-				(mmMapType == c_mmDoubleRing)))
-				return "Small maps can not have a territory win condition";
-		}
+  //      else if (bScoresCount && iMaxImbalance != 0x7ffe)
+  //      {
+  //          return "Scores can't be counted for a game where the MaxImbalance setting is not Auto; "
+  //              "please set the MaxImbalance setting to Auto, or turn off stats count.";
+  //      }
+        else if (IsConquestGame() && bInvulnerableStations)
+        {
+            return "You can't play a conquest game with invulnerable stations; "
+                "You must disable the conquest winning condition or turn off "
+                "the invulnerable stations option.";
+        }
+        else if (IsProsperityGame() && !bAllowDevelopments)
+        {
+            return "You can't play a prosperity game with developments turned off; "
+                "You must disable the prosperity winning condition or turn on "
+                "developments.";
+        }
+        else if (nPlayerSectorTreasureRate > 0.01 ||  nNeutralSectorTreasureRate > 0.01)
+        {
+            return "Treasure rate(s) too high; max is 0.01";
+        }
+        else if (IsTerritoryGame())
+        {
+            if (mmMapType == c_mmBrawl)
+                return "Brawl maps can not have a territory win condition";
+            else if ((nTeams == 2) &&
+                     ((mmMapType == c_mmSingleRing) ||
+                      (mmMapType == c_mmDoubleRing)))
+                return "Small maps can not have a territory win condition";
+        }
 
-		return ImapMakerIGC::IsValid(this);
-	}
+        return ImapMakerIGC::IsValid(this);
+    }
 
-	//
-	// Winning Condition Info
-	//
+    //
+    // Winning Condition Info
+    //
 
-	bool IsConquestGame() const
-	{
-		return iGoalConquestPercentage != 0;
-	}
+    bool IsConquestGame() const
+    {
+        return iGoalConquestPercentage != 0;
+    }
 
-	bool IsTerritoryGame() const
-	{
-		return iGoalTerritoryPercentage != 100;
-	}
+    bool IsTerritoryGame() const
+    {
+        return iGoalTerritoryPercentage != 100;
+    }
 
-	bool IsDeathMatchGame() const
-	{
-		return nGoalTeamKills != 0;
-	}
+    bool IsDeathMatchGame() const
+    {
+        return nGoalTeamKills != 0;
+    }
 
-	bool IsCountdownGame() const
-	{
-		return dtGameLength != 0.0f;
-	}
+    bool IsCountdownGame() const
+    {
+        return dtGameLength != 0.0f;
+    }
 
-	bool IsProsperityGame() const
-	{
-		return fGoalTeamMoney != 0;
-	}
+    bool IsProsperityGame() const
+    {
+        return fGoalTeamMoney != 0;
+    }
 
-	bool IsArtifactsGame() const
-	{
-		return (nGoalArtifactsCount != 0);
-	}
+    bool IsArtifactsGame() const
+    {
+        return (nGoalArtifactsCount != 0);
+    }
 
-	bool IsFlagsGame() const
-	{
-		return (nGoalFlagsCount != 0);
-	}
+    bool IsFlagsGame() const
+    {
+        return (nGoalFlagsCount != 0);
+    }
 
-	bool IsNoWinningConditionsGame() const
-	{
-		return !(IsConquestGame() ||
-			IsDeathMatchGame() ||
-			IsCountdownGame() ||
-			IsProsperityGame() ||
-			IsArtifactsGame() ||
-			IsTerritoryGame() ||
-			IsFlagsGame());
-	}
+    bool IsNoWinningConditionsGame() const
+    {
+        return !(IsConquestGame()   ||
+                 IsDeathMatchGame() ||
+                 IsCountdownGame()  ||
+                 IsProsperityGame() ||
+                 IsArtifactsGame()  ||
+                 IsTerritoryGame()  ||
+                 IsFlagsGame());
+    }
 
-	float GetCountDownTime() const
-	{
-		return dtGameLength;
-	}
+    float GetCountDownTime() const
+    {
+        return dtGameLength;
+    }
 
-	int GetConquestPercentage() const
-	{
-		return iGoalConquestPercentage;
-	}
+    int GetConquestPercentage() const
+    {
+        return iGoalConquestPercentage;
+    }
 
-	int GetTerritoryPercentage() const
-	{
-		return iGoalTerritoryPercentage;
-	}
+    int GetTerritoryPercentage() const
+    {
+        return iGoalTerritoryPercentage;
+    }
 
-	short GetDeathMatchKillLimit() const
-	{
-		return nGoalTeamKills;
-	}
+    short GetDeathMatchKillLimit() const
+    {
+        return nGoalTeamKills;
+    }
 
-	int GetArtifactsPercentage() const
-	{
-		return iGoalArtifactsPercentage;
-	}
+    int GetArtifactsPercentage() const
+    {
+        return iGoalArtifactsPercentage;
+    }
 };
-
 
 //Utility data structures
 typedef  Slist_utl<IpartIGC*>           PartListIGC;
@@ -1633,7 +1678,7 @@ struct  HardpointData
 struct AsteroidDef
 {
     float                   ore;
-    float                   oreMax;
+    float                   oreMax;	
     AsteroidAbilityBitMask  aabmCapabilities;
     AsteroidID              asteroidID;
     HitPoints               hitpoints;
@@ -1827,7 +1872,7 @@ struct  DataAsteroidIGC
 
 struct  DataObjectIGC
 {
-    D3DCOLORVALUE       color;
+    COLORVALUE          color; // was D3DCOLORVALUE
     float               radius;
     float               rotation;
     char                modelName[c_cbFileName];
@@ -1939,7 +1984,7 @@ struct  DataProbeTypeIGC : public DataExpendableTypeIGC
     float               dtRipcord;
 };
 
-struct  DataPartIGC  
+struct  DataPartIGC
 {
     IpartTypeIGC*       partType;
 };
@@ -2272,7 +2317,7 @@ class   CompactControlData      //4 bytes
         }
 };
 
-class   CompactShipFractions         //5 bytes
+class   CompactShipFractions         //6 bytes  
 {
     private:
         BytePercentage      m_bpHullFraction;       //1
@@ -2390,7 +2435,7 @@ class   ClientShipUpdate                                //33 bytes
         BytePercentage      power;                      //1
 };
 
-class ClientActiveTurretUpdate                                      //12 bytes          
+class ClientActiveTurretUpdate                                      //12 bytes
 {
     public:
         Time                time;                       //4
@@ -2651,13 +2696,13 @@ struct  ExplosionData
 //
 enum ChatTarget // if you change this please update AGCChatTarget in AGCIDL.idl
 {
-	CHAT_EVERYONE = 0, CHAT_LEADERS, CHAT_ADMIN, CHAT_SHIP,
-	CHAT_ALLIES, //imago added allies 7/3/09 ALLY
-	CHAT_TEAM, CHAT_INDIVIDUAL, CHAT_INDIVIDUAL_NOFILTER, CHAT_WING, CHAT_INDIVIDUAL_ECHO,     //require objectID to be set
-	CHAT_ALL_SECTOR, CHAT_FRIENDLY_SECTOR,                      //ditto
-	CHAT_GROUP, CHAT_GROUP_NOECHO,                               //client only ... get translated into multiple sends
-	CHAT_NOSELECTION,
-	CHAT_MAX,
+    CHAT_EVERYONE = 0, CHAT_LEADERS, CHAT_ADMIN, CHAT_SHIP,
+    CHAT_ALLIES, //imago added allies 7/3/09 ALLY
+    CHAT_TEAM, CHAT_INDIVIDUAL, CHAT_INDIVIDUAL_NOFILTER, CHAT_WING, CHAT_INDIVIDUAL_ECHO,     //require objectID to be set
+    CHAT_ALL_SECTOR, CHAT_FRIENDLY_SECTOR,                      //ditto
+    CHAT_GROUP, CHAT_GROUP_NOECHO,                               //client only ... get translated into multiple sends
+    CHAT_NOSELECTION,
+    CHAT_MAX,
 };
 
 //Interfaces ....
@@ -2738,6 +2783,20 @@ class ImissionIGC : public IstaticIGC
                                                __int64   maskTypes,
                                                char*     pdata,
                                                int       datasize) = 0;
+		//Imago added
+		virtual ZString					BitsToTechsList(TechTreeBitMask & ttbm) = 0;
+		virtual void					TechsListToBits(const char * szTechs, TechTreeBitMask & ttbm) = 0;
+
+		virtual ZString					BitsToPartsList(PartMask & pm, EquipmentType et) = 0;
+		virtual PartMask				PartMaskFromToken(const char * szToken, EquipmentType et) = 0;
+		virtual PartMask				PartsListToMask(const char * szParts, EquipmentType et) = 0;
+
+		virtual bool					LoadTechBitsList(void) = 0;
+		virtual bool					LoadPartsBitsList(void) = 0;
+
+		virtual void					ExportStaticIGCObjs(void) = 0;
+		virtual void					ImportStaticIGCObjs(void) = 0;
+		// Imago ^
 
         virtual MissionID               GetMissionID(void) const = 0;
         virtual void                    SetMissionID(MissionID  mid) = 0;
@@ -2760,6 +2819,7 @@ class ImissionIGC : public IstaticIGC
         virtual void                    DeleteSide(IsideIGC* s) = 0;
         virtual IsideIGC*               GetSide(SideID sideID) const = 0;
         virtual const SideListIGC*      GetSides(void) const = 0;
+		virtual void                    GetSeenSides(ImodelIGC * pmodel, bool (&bseensides)[c_cSidesMax], ImodelIGC * poptionalmodel = NULL) = 0; //Imago #120 #121 8/10
 
         virtual void                    AddCluster(IclusterIGC* c) = 0;
         virtual void                    DeleteCluster(IclusterIGC* c) = 0;
@@ -2848,6 +2908,8 @@ class ImissionIGC : public IstaticIGC
 
         virtual short                   GetReplayCount(void) const = 0;
         virtual const char*             GetContextName(void) = 0;
+		//#ALLY
+		virtual void                    UpdateAllies(const char  Allies[c_cSidesMax]) = 0;
 };
 
 class IbaseIGC : public IObject
@@ -2898,7 +2960,7 @@ class ThingSite : public AttachSite
         virtual void        AddHullHit(const Vector& vecPosition, const Vector& vecNormal) {}
         virtual void        AddFlare(Time ptime, const Vector& vecPosition, int id, const Vector* ellipseEquation) {}
         virtual void        AddMuzzleFlare(const Vector& vecEmissionPoint, float duration) {}
-    
+
         virtual void        SetVisible(unsigned char render)  {}
 
         virtual void        SetAfterburnerThrust (const Vector& direction, float power) {}
@@ -2947,7 +3009,9 @@ class ThingSite : public AttachSite
         virtual void        UpdateSideVisibility(ImodelIGC*         pmodel,
                                                  IclusterIGC*       pcluster) {}
         virtual bool        GetSideVisibility(IsideIGC*             side) { return false; }
-        virtual void        SetSideVisibility(IsideIGC*             side,
+        //Xynth #100 7/2010
+		virtual bool        GetCurrentEye(IsideIGC*             side) { return false; }
+		virtual void        SetSideVisibility(IsideIGC*             side,
                                               bool                  fVisible) {}
 
         virtual void             ActivateBolt(void) {}
@@ -3000,6 +3064,7 @@ class ImodelIGC : public IbaseIGC
         virtual void                 SetRender(unsigned char render) = 0;
 
         virtual bool                 SeenBySide(IsideIGC* side) const = 0;
+		virtual bool                 GetCurrentEye(IsideIGC* side) const = 0; //Xynth #225
         virtual void                 UpdateSeenBySide(void) = 0;
         virtual void                 SetSideVisibility(IsideIGC* side, bool fVisible) = 0;
 
@@ -3216,6 +3281,12 @@ class IshipIGC : public IscannerIGC
         virtual ImissileIGC*        GetLastMissileFired(void) const = 0;
         virtual void                SetLastMissileFired(ImissileIGC* pmissile) = 0;
 
+		//Imago #7 7/10
+		virtual Time                GetLastTimeLaunched(void) const = 0;
+		virtual void                SetLastTimeLaunched(Time timeLastLaunch) = 0;
+        virtual void                SetLastTimeDocked(Time timeLastDock) = 0;
+        virtual Time                GetLastTimeDocked(void) const = 0;
+
         virtual void                Promote(void) = 0;
 
         virtual void                SetParentShip(IshipIGC* pship) = 0;
@@ -3278,7 +3349,13 @@ class IshipIGC : public IscannerIGC
 
         virtual float               GetRipcordDebt(void) const = 0;
         virtual void                AdjustRipcordDebt(float delta) = 0;
-
+		virtual void				SetStayDocked(bool stayDock) = 0; //Xynth #48 8/2010
+		virtual bool				GetStayDocked(void) const =0; //Xynth #48
+		virtual void				AddRepair(float repair) = 0;
+		virtual float				GetRepair(void) const = 0;
+		virtual void				SetAchievementMask(AchievementMask am) = 0;
+		virtual void				ClearAchievementMask(void) = 0;
+		virtual AchievementMask		GetAchievementMask(void) const = 0;
         virtual DamageTrack*        GetDamageTrack(void) = 0;
         virtual void                CreateDamageTrack(void) = 0;
         virtual void                DeleteDamageTrack(void) = 0;
@@ -3395,6 +3472,9 @@ class IprobeIGC : public IscannerIGC
         virtual SoundID              GetAmbientSound(void) const = 0;
         virtual void                 SetCreateNow (void) = 0;
         virtual float                GetTimeFraction(void) const = 0;
+		//Xynth 7/2010 function to set probe expiration	ticket #10	
+		virtual void				SetExpiration(Time time) = 0;
+		virtual IshipIGC*			GetProbeLauncherShip() const = 0;
 };
 
 class IstationIGC : public IscannerIGC
@@ -3407,6 +3487,26 @@ class IstationIGC : public IscannerIGC
         virtual void                    RepairAndRefuel(IshipIGC*   pship) const = 0;
         virtual void                    Launch(IshipIGC* pship) = 0;
         virtual bool                    InGarage(IshipIGC*  pship, const Vector& position) = 0;
+		
+		//Imago #121
+		virtual ObjectID				GetRoidID() const = 0;
+		virtual void SetRoidID(ObjectID id) = 0;
+
+		virtual Vector					GetRoidPos() const = 0;
+		virtual void SetRoidPos(Vector pos) = 0;
+
+		virtual float					GetRoidSig() const = 0;
+		virtual void SetRoidSig(float Sig) = 0;
+
+		virtual float					GetRoidRadius() const = 0;
+		virtual void SetRoidRadius(float Radius) = 0;
+		
+		virtual AsteroidAbilityBitMask	GetRoidCaps() const = 0;
+		virtual void SetRoidCaps(AsteroidAbilityBitMask aabm) = 0;
+
+		virtual void SetRoidSide(SideID sid, bool bset = true) = 0;
+		virtual bool GetRoidSide(SideID sid) = 0;
+		//
 
         virtual float                   GetShieldFraction(void) const = 0;
         virtual void                    SetShieldFraction(float sf) = 0;
@@ -3485,6 +3585,7 @@ class IstationTypeIGC : public IbuyableIGC
         virtual const char*             GetBuilderName(void) const = 0;
 
         virtual  IstationTypeIGC*       GetSuccessorStationType(const IsideIGC*   pside) = 0;
+        virtual  IstationTypeIGC*       GetDirectSuccessorStationType() = 0; // EF5P - see wintrek\loadout.cpp
         virtual AsteroidAbilityBitMask  GetBuildAABM(void) const = 0;
 
         virtual int                     GetLaunchSlots(void) const = 0;
@@ -3556,7 +3657,7 @@ class IprojectileTypeIGC : public ItypeIGC
         virtual float            GetLifespan(void) const = 0;
         virtual float            GetRadius(void) const = 0;
         virtual float            GetRotation(void) const = 0;
-        virtual D3DCOLORVALUE    GetColor(void) const = 0;
+        virtual COLORVALUE       GetColor(void) const = 0; // was D3DCOLORVALUE
         virtual DamageTypeID     GetDamageType(void) const = 0;
         virtual SoundID          GetAmbientSound(void) const = 0;
 };
@@ -3657,12 +3758,13 @@ class IhullTypeIGC : public IbuyableIGC
         virtual short                GetCapacity(EquipmentType et) const = 0;
         virtual Mount                GetMaxWeapons(void) const = 0;
         virtual Mount                GetMaxFixedWeapons(void) const = 0;
-        virtual const HardpointData& GetHardpointData(Mount hardpointID) const = 0; 
-        virtual bool                 CanMount(IpartTypeIGC* ppt, Mount  mountID) const = 0;                      
+        virtual const HardpointData& GetHardpointData(Mount hardpointID) const = 0;
+        virtual bool                 CanMount(IpartTypeIGC* ppt, Mount  mountID) const = 0;
 
         virtual const char*          GetTextureName(void) const = 0;
 
         virtual const Vector&        GetCockpit(void) const = 0;
+		virtual const Vector&		 GetChaffPosition(void) const = 0; // TurkeyXIII 11/09 #94
 
         virtual float                GetMass(void) const = 0;
         virtual float                GetSignature(void) const = 0;
@@ -3819,6 +3921,7 @@ class IafterburnerIGC : public IpartIGC
 {
     public:
         virtual float    GetFuelConsumption(void) const = 0;
+		virtual float    GetMaxThrustWithGA(void) const = 0; //TheRock 15-8-2009
         virtual float    GetMaxThrust(void) const = 0;
         virtual float    GetOnRate(void) const = 0;
         virtual float    GetOffRate(void) const = 0;
@@ -3827,7 +3930,7 @@ class IafterburnerIGC : public IpartIGC
 
         virtual float    GetPower(void) const = 0;
         virtual void     SetPower(float p) = 0;
-        
+
         virtual SoundID  GetInteriorSound(void) const = 0;
         virtual SoundID  GetExteriorSound(void) const = 0;
 };
@@ -3915,7 +4018,7 @@ class IclusterIGC : public IbaseIGC
         virtual float                   GetScreenY(void) const = 0;
 
         virtual void                    SetActive(bool bActive) = 0;
-        
+
         virtual void                    AddStation(IstationIGC* stationNew) = 0;
         virtual void                    DeleteStation(IstationIGC* stationOld) = 0;
         virtual IstationIGC*            GetStation(StationID stationID) const = 0;
@@ -3982,6 +4085,8 @@ class IclusterIGC : public IbaseIGC
         virtual float            GetPendingTreasures(void) const = 0;
         virtual void             SetPendingTreasures(float  fpt) = 0;
         virtual float            GetCost(void) const = 0;
+		virtual void			 SetHighlight(bool hl) = 0; //Xynth #208
+		virtual bool			 GetHighlight(void) const = 0;
 };
 
 class IasteroidIGC : public IdamageIGC
@@ -4004,6 +4109,15 @@ class IasteroidIGC : public IdamageIGC
         static int                      NumberSpecialAsteroids(const MissionParams*  pmp);
         static int                      GetSpecialAsterioid(const MissionParams*  pmp, int index);
         static int                      GetRandomType(AsteroidAbilityBitMask aabm);
+		//Xynth #100 7/2010
+		virtual float GetOreSeenBySide(IsideIGC *side1) const = 0;
+		virtual bool GetAsteroidCurrentEye(IsideIGC *side1) const = 0;
+		virtual void SetOreWithFraction(float oreFraction, bool clientUpdate) = 0;  //Xynth #163 7/2010
+		virtual float GetOreFraction() const = 0; //Xynth #163
+		//Imago 8/10 #120 #121
+		virtual void SetBuilderSeenSide(ObjectID oid) = 0;
+		virtual bool GetBuilderSeenSide(ObjectID oid) = 0;
+		virtual void SetInhibitUpdate(bool inhib) = 0; //Xynth #225 9/10
 };
 
 class IwarpIGC : public ImodelIGC
@@ -4013,6 +4127,8 @@ class IwarpIGC : public ImodelIGC
         virtual void                AddBomb(Time               timeExplode,
                                             ImissileTypeIGC*   pmt) = 0;
         virtual const WarpBombList* GetBombs(void) const = 0;
+		virtual bool                IsFixedPosition()    = 0; // KG- added
+		virtual double				MassLimit()			 = 0; // Andon - Added for Mass Limted Alephs
 };
 
 class ItreasureIGC : public ImodelIGC
@@ -4044,7 +4160,7 @@ class IsideIGC : public IbaseIGC
         virtual void                        SetSquadID(SquadID squadID) = 0;
 
         virtual const TechTreeBitMask       GetTechs(void) const = 0;
-        
+
         virtual const TechTreeBitMask&      GetBuildingTechs(void) const = 0;
         virtual void                        ResetBuildingTechs(void) = 0;
         virtual void                        SetBuildingTechs(const TechTreeBitMask& ttbm) = 0;
@@ -4128,6 +4244,25 @@ class IsideIGC : public IbaseIGC
         virtual void          SetTimeEndured(float fSeconds) = 0;
         virtual long          GetProsperityPercentBought(void) const = 0;
         virtual long          GetProsperityPercentComplete(void) const = 0;
+
+		// ALLIES #ALLY
+		virtual void		  SetAllies(char allies) = 0;
+		virtual char          GetAllies() = 0;
+		static bool           AlliedSides(IsideIGC *side1, IsideIGC *side2)
+		{
+			if( side1==side2) return true;
+			if (side1==NULL) return false;
+			if (side2==NULL) return false;
+			if (side1->GetAllies() == NA) return false;
+			return (side1->GetAllies() == side2->GetAllies());
+		}
+		//
+		//Xynth #170 8/10
+		virtual bool GetRandomCivilization(void) const = 0;
+		virtual void SetRandomCivilization(bool rand) = 0;
+
+		//Xynth Adding function to return number of players on a side
+		virtual int GetNumPlayersOnSide(void) const = 0;
 };
 
 class IcivilizationIGC : public IbaseIGC
@@ -4154,7 +4289,7 @@ class ItreasureSetIGC : public IbaseIGC
     public:
         virtual const char*                 GetName(void) const = 0;
         virtual bool                        GetZoneOnly(void) const = 0;
-
+		virtual short						GetSize(void) const = 0; //imago added 7/30/08
         virtual void                        AddTreasureData(TreasureCode tc, ObjectID oid, unsigned char chance) = 0;
 
         virtual const TreasureData&         GetRandomTreasureData(void) const = 0;
@@ -4438,10 +4573,11 @@ inline int GetTypebits(ObjectType  ot)
     return c_ttTypebits[ot];
 }
 
-bool  FindableModel(ImodelIGC*    m,
-                    IsideIGC*     pside,
+bool  FindableModel(ImodelIGC*    		m,
+                    IsideIGC*     		pside,
                     int                 ttMask,
-                    AbilityBitMask      abmAbilities);
+                    AbilityBitMask      abmAbilities,
+					int 				iAllies = 1);  //Imago 7/31/09 e.g. 1 = normal (your side + allies) 0 = your side only 2 = allies only
 
 ImodelIGC*  FindTarget(IshipIGC*            pShip,
                        int                  ttMask,
@@ -4450,7 +4586,8 @@ ImodelIGC*  FindTarget(IshipIGC*            pShip,
                        const Vector*        pposition = NULL,
                        const Orientation*   porientation = NULL,
                        AbilityBitMask       abmAbilities = 0,                   //e.g. anything
-                       int                  maxDistance = 0x7fffffff);          //e.g. anywhere
+                       int                  maxDistance = 0x7fffffff,			//e.g. anywhere
+					   int 					bAllies = 1);  //Imago 7/31/09        e.g. pass-thru to FindableModel --^
 
 int         GetDistance(IshipIGC*       pship,
                         IclusterIGC*    pclusterOne,
@@ -4478,6 +4615,7 @@ class   SideVisibility
         SideVisibility(void)
         :
             m_fVisible(false),
+			m_currentEyed(false),
             m_pLastSpotter(NULL)
         {
         }
@@ -4514,8 +4652,22 @@ class   SideVisibility
                 s->AddRef();
         }
 
+		//Xynth #100 7/2010
+		void	CurrentEyed(bool v)
+		{
+			m_currentEyed = v;
+		}
+
+		bool	CurrentEyed(void)
+		{			
+			return m_currentEyed;
+		}
+
     private:
         bool            m_fVisible;
+		//Xynth #100 7/2010 if static is it actively eyed by a scanner
+		//for non-static this will always equal m_fVisible
+		bool            m_currentEyed;
         IscannerIGC*    m_pLastSpotter;
 };
 
@@ -4579,7 +4731,8 @@ class IIgcSite : public IObject
         virtual void    BuildStation(IasteroidIGC*      pasteroid,
                                          IsideIGC*          pside,
                                          IstationTypeIGC*   pstationtype,
-                                         Time               now) { }
+										 Time               now,
+										 bool pbseensides[]) { } //Imago #120 #121 8/10
 
         virtual TRef<ThingSite>      CreateThingSite(ImodelIGC* pModel){return new ThingSite;}
         virtual TRef<ClusterSite>    CreateClusterSite(IclusterIGC* pCluster){return new ClusterSite;}
@@ -4631,8 +4784,10 @@ class IIgcSite : public IObject
         virtual void TerminateModelEvent(ImodelIGC* model){}
         virtual void TerminateMissionEvent(ImissionIGC* pMission){}
         virtual void KillAsteroidEvent(IasteroidIGC* pasteroid, bool explodeF) {}
+		virtual void KillAsteroidEvent(AsteroidID roid, SectorID soid, IsideIGC* side) {} //Imago #120 #121 8/10
         virtual void DrainAsteroidEvent(IasteroidIGC* pasteroid) {}
-        virtual void KillProbeEvent(IprobeIGC* pprobe) {}
+		virtual void MineAsteroidEvent(IasteroidIGC* pasteroid, float newOre) {}  //Xynth #132 7/2010
+		virtual void KillProbeEvent(IprobeIGC* pprobe) {}
         virtual void KillMissileEvent(ImissileIGC* pmissile, const Vector& position) {}
         virtual void KillBuildingEffectEvent(IbuildingEffectIGC* pbe) {}
         virtual void KillMineEvent(ImineIGC* pmine) {}
@@ -4726,7 +4881,7 @@ class   DamageTrack
         void    SwitchSlots(void);
 
         void    ApplyDamage(Time        timeNow,
-                            ImodelIGC*  pmodel,                            
+                            ImodelIGC*  pmodel,
                             float       damage);
 
         void    Reset(void);
@@ -4926,23 +5081,48 @@ inline void        AddIbaseIGC(BaseListIGC*        list, IbaseIGC* base)
     ZVerify(list->last(base));
     base->AddRef();
 }
+
+
 inline void        DeleteIbaseIGC(BaseListIGC*     list, IbaseIGC* base)
 {
-    assert (list);
-    assert (base);
+	assert(list);
+	assert(base);
 
-    for (BaseLinkIGC*   l = list->first();
-         (l != NULL);
-         l = l->next())
-    {
-        if (l->data() == base)
-        {
-            delete l;               //remove it from the list
-            base->Release();        //reduce the ref count
-            break;                  //all done
-        }
-    }
+	// BT - 9/17 - Debugging AllSrv crashes.
+	if (list == nullptr)
+	{
+		debugf("ERROR: IGC::DeleteIbaseIGC() - list was null.\n");
+		return;
+	}
+
+	if (base == nullptr)
+	{
+		debugf("ERROR: IGC::DeleteIbaseIGC() - base was null.\n");
+		return;
+	}
+
+	/*__try
+	{*/
+
+		for (BaseLinkIGC*   l = list->first();
+			(l != NULL);
+			l = l->next())
+		{
+			if (l->data() == base)
+			{
+				delete l;               //remove it from the list
+				base->Release();        //reduce the ref count
+				break;                  //all done
+			}
+		}
+	/*}
+	__except (StackTracer::ExceptionFilter(GetExceptionInformation()))
+	{
+		StackTracer::OutputStackTraceToDebugF();
+	}*/
 }
+
+
 inline IbaseIGC*   GetIbaseIGC(const BaseListIGC*  list, ObjectID    id)
 {
     assert (list);
@@ -4970,7 +5150,7 @@ class   Waypoint
             c_oEnter,       //dock for starbases, warp for alephs
             c_oGoto,        //get to within m_fOffset and stop
             c_oNothing
-        };          
+        };
 
         Waypoint(void)
         :
@@ -5040,7 +5220,7 @@ class   Waypoint
                                             Vector*             pvectorFacing);
 
         ImodelIGC*  m_pmodelTarget;
-        
+
         Objective   m_objective;
 
         friend class GotoPlan;
@@ -5097,7 +5277,7 @@ class   GotoPlan
             m_pvOldCluster = m_pship->GetCluster();
             m_pvOldClusterTarget = pmodelTarget->GetCluster();
         }
-        
+
         int     GetMaskWaypoints(void) const
         {
             return m_maskWaypoints;
@@ -5122,7 +5302,7 @@ class   GotoPlan
         void*       m_pvOldClusterTarget;           //ditto for the target
 };
 
-static  AssetMask   GetAssetMask(IshipIGC* pship, IhullTypeIGC* pht, bool bFriendly)
+static  AssetMask   GetAssetMask(IshipIGC* pship, const IhullTypeIGC* pht, bool bFriendly)
 {
     AssetMask   am;
 
@@ -5178,7 +5358,7 @@ IshipIGC*   CreateDrone(ImissionIGC*     pmission,
                         IsideIGC*        pside,
                         AbilityBitMask   abmOrders = 0,
                         float            shootSkill = 1.0f,
-                        float            moveSkill  = 1.0f,        
+                        float            moveSkill  = 1.0f,
                         float            bravery    = 1.0f);
 
 
@@ -5234,7 +5414,7 @@ class PersistPlayerScoreObject
         {
           m_civID = civID;
         }
-        
+
         CivID GetCivID() const
         {
           return m_civID;
@@ -5304,6 +5484,8 @@ class PlayerScoreObject
             m_cPlayerKills = 0.0f;
             m_cBaseKills = 0.0f;
             m_cBaseCaptures = 0.0f;
+			m_cProbeSpot = 0;
+			m_cRepair = 0;
 
             m_cRescues = 0;
 
@@ -5330,9 +5512,15 @@ class PlayerScoreObject
             m_bCommandCredit = false;
 
             m_fScore = 0.0f;
+			m_rankRatio = 1.0f;
 
             assert (!m_bConnected);
         }
+
+		void SetRankRatio(float rankRatio)
+		{
+			m_rankRatio = rankRatio;
+		}
 
         bool    Connected(void) const
         {
@@ -5391,7 +5579,7 @@ class PlayerScoreObject
                         bool            bLose)
         {
             assert (!m_bConnected);
-            assert (!(bWin && bLose));
+            assert (!(bWin && bLose)); 
 
             m_bWin = bWin;
             m_bLose = bLose;
@@ -5408,6 +5596,16 @@ class PlayerScoreObject
         {
             m_cAsteroidsSpotted++;
         }
+
+		void	AddProbeSpot(void)
+		{
+			m_cProbeSpot++;
+		}
+		void	SetRepair(int repair)
+		{
+			m_cRepair += repair;
+		}
+
 
         void    KillShip(IshipIGC*      pship,
                          float          fraction)
@@ -5665,6 +5863,8 @@ class PlayerScoreObject
         float                       m_cPlayerKills;
         float                       m_cBaseKills;
         float                       m_cBaseCaptures;
+		short						m_cProbeSpot;
+		int							m_cRepair;
 
         short                       m_cTechsRecovered;
         short                       m_cFlags;
@@ -5685,6 +5885,7 @@ class PlayerScoreObject
         float                       m_fCombatRating;
 
         float                       m_fScore;
+		float						m_rankRatio;
 
         bool                        m_bPlayer;
         bool                        m_bConnected;
@@ -5786,7 +5987,7 @@ class GameOverScoreObject
         {
             return m_cTotalBaseCaptures;
         }
-        
+
         short   GetFlags(void) const
         {
             return m_cFlags;
@@ -5801,7 +6002,7 @@ class GameOverScoreObject
         {
             return m_cRescues;
         }
-        
+
         short   GetTotalKills(void) const
         {
             return m_cTotalKills;
@@ -5842,7 +6043,7 @@ class GameOverScoreObject
         {
             return m_fCombatRating;
         }
-        
+
         bool    GetWinner(void) const
         {
             return m_bWinner;
@@ -5905,13 +6106,13 @@ class GameOverScoreObject
 // normal igc files, i.e. missions can be dumped and loaded using these two
 // functions. They return true if successful.
 //------------------------------------------------------------------------------
-bool    DumpIGCFile (const char* name, ImissionIGC* pMission, __int64 iMaskExportTypes, 
+bool    DumpIGCFile (const char* name, ImissionIGC* pMission, __int64 iMaskExportTypes,
                      void (*munge)(int size, char* data) = NULL);
 bool    LoadIGCFile (const char* name, ImissionIGC* pMission, void (*munge)(int size, char* data) = NULL);
 
 //------------------------------------------------------------------------------
 // static data core files are dealt with by these functions. They are
-// almost identical to the normal igc file loaders, but there is a version 
+// almost identical to the normal igc file loaders, but there is a version
 // number in the file, and it is returned by the LoadIGCStaticCore function.
 // if the load function fails, it returns NA.
 //------------------------------------------------------------------------------
