@@ -19,7 +19,8 @@ public:
         const WinPoint& point, 
         const WinRect&  rectClip,
         const ZString&  str, 
-        const Color&    color
+        const Color&    color,
+		BYTE * writablePointer = nullptr
     ) = 0;
 };
 

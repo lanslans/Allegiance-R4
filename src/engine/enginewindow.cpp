@@ -988,7 +988,11 @@ bool EngineWindow::RenderFrame()
             pcontext->Clip(rect);
 
             m_pgroupImage->Render(pcontext);
+			
+			//pcontext->DrawDeferredStrings();
+
             UpdatePerformanceCounters(pcontext, m_timeCurrent);
+			
             psurface->ReleaseContext(pcontext);
             RenderPerformanceCounters(psurface);
             return true;

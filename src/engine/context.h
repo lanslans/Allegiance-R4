@@ -839,6 +839,9 @@ public:
         const Point&   point,
         const ZString& str
     ) = 0;
+
+
+
     virtual void DrawRectangle(const Rect& rect, const Color& color) = 0;
     virtual void FillRect(const Rect& rect, const Color& color) = 0;
     virtual void FillInfinite(const Color& color) = 0;
@@ -906,6 +909,15 @@ public:
         virtual int GetPerformanceCounter(Counter counter) = 0;
         virtual void ResetPerformanceCounters() = 0;
     #endif
+
+		virtual void DrawDeferredStrings() = 0;
+
+		virtual void DrawStringDeferred(
+			IEngineFont*   pfont,
+			const Color&   color,
+			const Point&   point,
+			const ZString& str
+		) = 0;
 };
 
 #endif
