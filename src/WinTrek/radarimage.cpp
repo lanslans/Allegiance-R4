@@ -1057,6 +1057,8 @@ public:
 
     void Render(Context* pcontext)
     {
+		pcontext->SetDeferredStringDrawing(true);
+
 		if (m_radarLOD != c_rlNone)
         {
             //
@@ -1259,6 +1261,9 @@ public:
 
             m_listTextData.SetEmpty();
         }
+
+		pcontext->SetDeferredStringDrawing(false);
+		pcontext->DrawDeferredStrings();
     }
 };
 
