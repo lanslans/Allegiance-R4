@@ -2796,7 +2796,7 @@ public:
         m_pgroupImageHUD->AddImage(CreateIndicatorImage(GetModeler(), m_pviewport, GetTime()));
 		
         m_pgroupImageHUD->AddImage(m_pwrapImageRadar   = new WrapImage(m_pradarImage));
-		m_pgroupImageHUD->AddImage(m_pwrapImageDeferredStringRender = new WrapImage(m_pdeferredStringRenderImage));
+		
 		
 
         //m_pgroupImageHUD->AddImage(m_pwrapImageTurret = new WrapImage(Image::GetEmpty()));
@@ -2838,6 +2838,7 @@ public:
 
         m_pgroupImage3D = new GroupImage();
 
+		//m_pgroupImage3D->AddImage(m_pdeferredStringRenderImage);
         m_pgroupImage3D->AddImage(m_pwrapImageHudGroup   );
         m_pgroupImage3D->AddImage(m_pmuzzleFlareImage    );  
 		//m_pgroupImage3D->AddImage(m_pwrapImageLensFlare  ); // Your_Persona: this line was moved down one line to move it up in the draw order.
@@ -2845,6 +2846,8 @@ public:
 		m_pgroupImage3D->AddImage(m_pwrapImageLensFlare  );// moved to here
         m_pgroupImage3D->AddImage(m_pwrapImagePosters    );
         m_pgroupImage3D->AddImage(m_pwrapImageStars      );
+
+		
 
         m_pgroupImage3D->AddImage(m_pwrapImageEnvironment);
 
@@ -2856,6 +2859,8 @@ public:
         m_pgroupImageGame->AddImage(m_pwrapImageConsole);
         m_pgroupImageGame->AddImage(m_pwrapImageBackdrop);
         m_pgroupImageGame->AddImage(m_pimageBlack       );
+
+		
 
 
         //

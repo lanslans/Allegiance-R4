@@ -151,7 +151,8 @@ public:
 			    }
             }
 
-			pcontext->SetBlendMode(BlendModeSourceAlpha);
+			//pcontext->SetBlendMode(BlendModeSourceAlpha);
+			pcontext->SetBlendMode(BlendModeAdd);
             pcontext->DrawImage3D(m_psurfaceDirectionIn, Color(0.4f, 0.4f, 0.4f, 0.4f), true, rect.Center());
         }
     }
@@ -256,7 +257,8 @@ public:
                         if (GetCamera()->TransformDirectionToImage (realAimDirection, pointLead))
                         {
                             pointLead = rect.TransformNDCToImage (pointLead);
-                            pcontext->SetBlendMode (BlendModeSourceAlpha);
+                            //pcontext->SetBlendMode (BlendModeSourceAlpha);
+							pcontext->SetBlendMode(BlendModeAdd);
                             if (bIisInRange)
                             {
                                 float   green = bWillHit ? 1.0f - (fHASquared / fRadiusSquared) : 0.0f;
@@ -350,7 +352,8 @@ public:
 								pcontext->DrawImage(psurfaceIndicator, true, pointCenter);
                                 */
 
-			                    pcontext->SetBlendMode(BlendModeSourceAlpha);
+			                    //pcontext->SetBlendMode(BlendModeSourceAlpha);
+								pcontext->SetBlendMode(BlendModeAdd);
                                 pcontext->DrawImage3D(m_psurfaceCenterOutRange, Color(1.0f - g, g, 0.0f), true, pointCenter);
                             }
                         }
@@ -388,7 +391,8 @@ public:
                         if (GetCamera()->TransformDirectionToImage (realAimDirection, pointRender))
                         {
                             pointRender = rect.TransformNDCToImage (pointRender);
-                            pcontext->SetBlendMode (BlendModeSourceAlpha);
+                            //pcontext->SetBlendMode (BlendModeSourceAlpha);
+							pcontext->SetBlendMode(BlendModeAdd);
                             pcontext->DrawImage3D (m_psurfaceCenterOutRange, Color (0.33f, 0.33f, 0.33f, 0.5f), true, pointRender);
                             //pcontext->DrawImage(m_psurfaceCenterOutRange, true, pointRender);
                         }
