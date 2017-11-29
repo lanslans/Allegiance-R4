@@ -148,12 +148,14 @@ public:
                     // couldn't load it free everything
                     //
 
-                    if (
+					// The texture failed to load... and we don't care.
+                    /*if (
                            hr != DDERR_SURFACELOST
                         && hr != DDERR_SURFACEBUSY
                     ) {
                         DDCall(hr);
-                    }
+                    }*/
+
                     m_pd3dtexture = NULL;
                     m_pdds        = NULL;
                     return false;
@@ -866,13 +868,13 @@ public:
             TRef<DeviceTexture> ptexture;
 
             if (!m_mapDeviceTextures.Find(pddsurface, ptexture)) {
-                while (true) {
+                for(int i = 0; i < 3; i++) {
                     ptexture = CreateDeviceTexture(pd3dd, pddsurface, size);
                     if (ptexture) {
                         m_mapDeviceTextures.Set(pddsurface, ptexture);
                         break;
                     } 
-
+					
                     RevokeTextures();
                 }
             }
