@@ -1258,7 +1258,8 @@ void EngineWindow::SetMouseEnabled(bool bEnable)
     m_bMouseEnabled = bEnable;
 }
 
-void EngineWindow::HandleMouseMessage(UINT message, const Point& point)
+// BT - Added mousewheel support from R9
+void EngineWindow::HandleMouseMessage(UINT message, const Point& point, UINT nFlags)
 {
     if (m_pgroupImage != NULL) {
         //
@@ -1362,6 +1363,28 @@ void EngineWindow::HandleMouseMessage(UINT message, const Point& point)
                 case WM_MBUTTONUP:   
                     mouseResult = pimage->Button(this, point, 2, m_bCaptured, m_bHit, false);
                     break;
+
+					// BT - Added mousewheel support from R9
+				case WM_MOUSEWHEEL:  //imago 8/13/09
+					if (nFlags >2) {
+						if (GET_WHEEL_DELTA_WPARAM(nFlags) < 0) {
+							mouseResult = pimage->Button(this, point, 8, m_bCaptured, m_bHit, true);
+							if (!m_pmouse->IsEnabled())
+								mouseResult = pimage->Button(this, point, 8, m_bCaptured, m_bHit, false);
+						}
+						else {
+							mouseResult = pimage->Button(this, point, 9, m_bCaptured, m_bHit, true);
+							if (!m_pmouse->IsEnabled())
+								mouseResult = pimage->Button(this, point, 9, m_bCaptured, m_bHit, false);
+						}
+					}
+					else if (nFlags == 1) {
+						mouseResult = pimage->Button(this, point, 8, m_bCaptured, m_bHit, false);
+					}
+					else if (nFlags == 0) {
+						mouseResult = pimage->Button(this, point, 9, m_bCaptured, m_bHit, false);
+					}
+					break;
             }
         }
 
@@ -1379,7 +1402,7 @@ void EngineWindow::HandleMouseMessage(UINT message, const Point& point)
 bool EngineWindow::OnMouseMessage(UINT message, UINT nFlags, const WinPoint& point)
 {
     if (!m_pengine->IsFullscreen()) {
-        HandleMouseMessage(message, Point::Cast(point));
+        HandleMouseMessage(message, Point::Cast(point), nFlags); // BT - Added mousewheel support from R9
     }
     
     return true;
@@ -1408,6 +1431,50 @@ bool EngineWindow::OnEvent(ButtonEvent::Source* pevent, ButtonEventData be)
             HandleMouseMessage(WM_MBUTTONDOWN, m_pmouse->GetPosition());
         } else {
             HandleMouseMessage(WM_MBUTTONUP,   m_pmouse->GetPosition());
+        }
+    //Imago 8/15/09 // BT - Added mousewheel support from R9
+    } else if (be.GetButton() == 3) {
+        if (be.IsDown()) {
+            HandleMouseMessage(WM_XBUTTONDOWN, m_pmouse->GetPosition(), MAKEWPARAM(0,1));
+        } else {
+            HandleMouseMessage(WM_XBUTTONUP,   m_pmouse->GetPosition(), MAKEWPARAM(0,1));
+        }
+    } else if (be.GetButton() == 4) {
+        if (be.IsDown()) {
+            HandleMouseMessage(WM_XBUTTONDOWN, m_pmouse->GetPosition(), MAKEWPARAM(0,2));
+        } else {
+            HandleMouseMessage(WM_XBUTTONUP,   m_pmouse->GetPosition(), MAKEWPARAM(0,2));
+        }
+    } else if (be.GetButton() == 5) {
+        if (be.IsDown()) {
+            HandleMouseMessage(WM_XBUTTONDOWN, m_pmouse->GetPosition(), MAKEWPARAM(0,3));
+        } else {
+            HandleMouseMessage(WM_XBUTTONUP,   m_pmouse->GetPosition(), MAKEWPARAM(0,3));
+        }
+    } else if (be.GetButton() == 6) {
+        if (be.IsDown()) {
+            HandleMouseMessage(WM_XBUTTONDOWN, m_pmouse->GetPosition(), MAKEWPARAM(0,4));
+        } else {
+            HandleMouseMessage(WM_XBUTTONUP,   m_pmouse->GetPosition(), MAKEWPARAM(0,4));
+        }
+    } else if (be.GetButton() == 7) {
+        if (be.IsDown()) {
+            HandleMouseMessage(WM_XBUTTONDOWN, m_pmouse->GetPosition(), MAKEWPARAM(0,5));
+        } else {
+            HandleMouseMessage(WM_XBUTTONUP,   m_pmouse->GetPosition(), MAKEWPARAM(0,5));
+        }
+
+    } else if (be.GetButton() == 8) {
+        if (be.IsDown()) {
+            HandleMouseMessage(WM_MOUSEWHEEL, m_pmouse->GetPosition(), -WHEEL_DELTA);
+        } else {
+            HandleMouseMessage(WM_MOUSEWHEEL, m_pmouse->GetPosition(), 1);
+        }
+    } else if (be.GetButton() == 9) {
+        if (be.IsDown()) {
+            HandleMouseMessage(WM_MOUSEWHEEL, m_pmouse->GetPosition(), WHEEL_DELTA);
+        } else {
+            HandleMouseMessage(WM_MOUSEWHEEL, m_pmouse->GetPosition(), 0);
         }
     }
 

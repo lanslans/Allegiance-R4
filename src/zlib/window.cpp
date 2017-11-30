@@ -852,6 +852,13 @@ DWORD Window::WndProc(
             }
             break;
 
+			// BT - Added mousewheel support from R9
+		case WM_MOUSEWHEEL: //imago 8/13/09
+		case WM_XBUTTONDOWN:
+		case WM_XBUTTONUP:
+		case WM_MOUSEHOVER: // imago --^
+		case WM_NCMOUSEHOVER: //Imago 7/10
+		case WM_NCMOUSELEAVE: //<--^
         case WM_LBUTTONDOWN:
         case WM_RBUTTONDOWN:
         case WM_MBUTTONDOWN:
