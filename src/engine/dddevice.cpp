@@ -284,7 +284,7 @@ private:
         DWORD dwNeededVideoMemory = 6 * xsize * ysize;
 
         if (
-               bits == 32 // KGJV 32B TODO: this works as long as all 16bpp modes are supported in 32bpp too...
+               bits >= 16 // KGJV 32B TODO: this works as long as all 16bpp modes are supported in 32bpp too...
             && xsize >= 640
             && ysize >= 480
             // !!! NT doesn't return the right value for TotalVideoMemory
@@ -295,7 +295,16 @@ private:
                        xsize == g_validModes[index].X()
                     && ysize == g_validModes[index].Y()
                 ) {
-                    m_modes.PushEnd(ddsd.Size());
+					bool foundMode = false;
+					for (int i = 0; i < m_modes.GetCount(); i++)
+					{
+						if (m_modes[i].X() == xsize && m_modes[i].Y() == ysize)
+							foundMode = true;
+					}
+
+					if(foundMode == false)
+						m_modes.PushEnd(ddsd.Size());
+
                     break;
                 }
             }
@@ -348,7 +357,7 @@ private:
 #ifdef USEDX7
             HRESULT hr = DirectDrawCreateEx(NULL, (void **)&pddPrimary, IID_IDirectDraw7, NULL); 
 #else
-            HRESULT hr = DirectDrawCreate(NULL, &pddPrimary, NULL);
+			HRESULT hr = DirectDrawCreate(NULL, &pddPrimary, NULL);
 #endif
 
             if (SUCCEEDED(hr)) {
@@ -607,32 +616,44 @@ public:
     {
         int count = m_modes.GetCount();
 
+		int nextModeIndex = count - 1;
+
         for(int index = 0; index < count; index++) {
             if (
-                   m_modes[index].X() > size.X() 
-                || m_modes[index].Y() > size.Y() 
+                   m_modes[index].X() == size.X() 
+                && m_modes[index].Y() == size.Y() 
             ) {
-                return m_modes[index];
+				nextModeIndex = index + 1;
+				break;
             }
         }
 
-        return m_modes[count - 1];
+		if (nextModeIndex >= count)
+			return m_modes[count - 1];
+		else
+			return m_modes[nextModeIndex];
     }
 
     WinPoint PreviousMode(const WinPoint& size)
     {
         int count = m_modes.GetCount();
 
-        for(int index = count - 1 ; index > 0; index--) {
-            if (
-                   m_modes[index].X() < size.X() 
-                || m_modes[index].Y() < size.Y() 
-            ) {
-                return m_modes[index];
-            }
-        }
+		int nextModeIndex = 0;
 
-        return m_modes[0];
+		for (int index = 0; index < count; index++) {
+			if (
+				m_modes[index].X() == size.X()
+				&& m_modes[index].Y() == size.Y()
+				) {
+				nextModeIndex = index - 1;
+				break;
+			}
+		}
+
+		if (nextModeIndex < 0)
+			return m_modes[0];
+		else
+			return m_modes[nextModeIndex];
     }
 
     void EliminateModes(const WinPoint& size)
