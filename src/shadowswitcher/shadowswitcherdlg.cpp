@@ -78,7 +78,7 @@ BOOL CShadowSwitcherDlg::OnInitDialog()
 
     HRESULT hr = 
         ::RegCreateKeyEx(
-            HKEY_LOCAL_MACHINE, 
+            HKEY_CURRENT_USER, 
             "Software\\Microsoft\\Microsoft Games\\Allegiance\\1.0",
             0, 
             "", 
