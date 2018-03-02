@@ -2963,6 +2963,11 @@ HRESULT BaseClient::HandleMsg(FEDMESSAGE* pfm,
             ZAssert(pplayer->IsTeamLeader());
             pplayer->SetMissionOwner(true);
 
+			if (pplayer->ShipID() == MyPlayerInfo()->ShipID() && pplayer->SideID() == MyPlayerInfo()->SideID())
+				MyPlayerInfo()->SetMissionOwner(true);
+			else
+				MyPlayerInfo()->SetMissionOwner(false);
+
             MyMission()->SetSideLeader(pplayer);
 
             m_pClientEventSource->OnPlayerStatusChange(MyMission(), pplayer->SideID(), pplayer);
