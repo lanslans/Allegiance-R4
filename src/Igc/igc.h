@@ -1033,476 +1033,470 @@ class ImapMakerIGC
 
 struct MissionParams
 {
-	//------------------------------------------------------------------------------
-	// If you add or remove properties, please update
-	// AGCGameParameters.cpp, AGCGameParameters.h, and AGCIDL.h.
-	//
-	//------------------------------------------------------------------------------
-	char        strGameName[c_cbGameName];              //Name of game
-	char        szIGCStaticFile[c_cbFileName];          //Name of static IGC file
-	char        szCustomMapFile[c_cbFileName];          //Name of custom Map file; used only if not blank
-	char        strGamePassword[c_cbGamePassword];      //Password
-	bool        bEjectPods : 1;                //Are eject pods used
-	bool        bInvulnerableStations : 1;              //Do station NOT take damage
-	bool        bShowMap : 1;                //Show all warps at the start of the game
-	bool        bAllowPrivateTeams : 1;
-	bool        bAllowEmptyTeams : 1;                //Allow teams without players
-	bool		bAllowAlliedRip : 1;				//Imago 7/8/09 ALLY
-	bool		bAllowAlliedViz : 1;				//Imago 7/11/09 ALLY
-	bool        bAllowDevelopments : 1;                //Allow investment in tech
-	bool        bAllowShipyardPath : 1;                //Allow building Shipyards
-	bool        bAllowTacticalPath : 1;                //Allow building Tactical Labs
-	bool        bAllowSupremacyPath : 1;                //Allow building Supremacy Centers
-	bool        bAllowExpansionPath : 1;                //Allow building Expansion Complexes
-	bool        bPowerUps : 1;                //Create treasure when a ship is destroyed
-	bool        bAllowDefections : 1;                //Allow players to switch from one team to another
-	bool        bAllowJoiners : 1;                //Allow players to join a game in progress
-	bool        bLockLobby : 1;                //Prevent new players from joining a game
-	bool        bLockSides : 1;                //Prevent players from switching sides
-	bool        bLockTeamSettings : 1;                //Prevent players from changing team attributes like name
-	bool        bLockGameOpen : 1;                //Prevent players from limiting the size of the game
-	bool        bStations : 1;        //??
-	bool        bScoresCount : 1;        //??
-	bool        bSquadGame : 1;        //??
-	bool        bDrones : 1;        //??
-	bool        iResources : 1;        //??
-	bool        bResourceAmountsVisible : 1;    //??
-	bool        bRandomWormholes : 1;        //??
-	bool        bNoTeams : 1;        //??
-	bool        bShowHomeSector : 1;                //Show everything in a player's home sector at start of game
-	bool        bAllowFriendlyFire : 1;                //Allow friends to damage friends
-	bool        bObjectModelCreated : 1;                //Was this game created by admin tools or the server app?
-	bool        bLobbiedGame : 1;                //Is this game listed in an internet lobby?
-	bool        bClubGame : 1;                //Is this game on the zone club?
-	bool        bAutoStart : 1;                //Does the game start automatically when all sides are ready?
-	bool        bAutoRestart : 1;                //Does the game restart automatically
-	bool        bAllowRestart : 1;                //Can the game be restarted at all?
-	bool        bExperimental : 1;                // mmf 10/07 Experimental game type
+    //------------------------------------------------------------------------------
+    // If you add or remove properties, please update 
+    // AGCGameParameters.cpp, AGCGameParameters.h, and AGCIDL.h.
+    // 
+    //------------------------------------------------------------------------------
+    char        strGameName[c_cbGameName];              //Name of game
+    char        szIGCStaticFile[c_cbFileName];          //Name of static IGC file
+    char        szCustomMapFile[c_cbFileName];          //Name of custom Map file; used only if not blank
+    char        strGamePassword[c_cbGamePassword];      //Password
+    bool        bEjectPods          : 1;                //Are eject pods used
+    bool        bInvulnerableStations : 1;              //Do station NOT take damage
+    bool        bShowMap            : 1;                //Show all warps at the start of the game
+    bool        bAllowPrivateTeams  : 1;
+    bool        bAllowEmptyTeams    : 1;                //Allow teams without players
+    bool        bAllowDevelopments  : 1;                //Allow investment in tech
+    bool        bAllowShipyardPath  : 1;                //Allow building Shipyards
+    bool        bAllowTacticalPath  : 1;                //Allow building Tactical Labs  
+    bool        bAllowSupremacyPath : 1;                //Allow building Supremacy Centers
+    bool        bAllowExpansionPath : 1;                //Allow building Expansion Complexes
+    bool        bPowerUps           : 1;                //Create treasure when a ship is destroyed
+    bool        bAllowDefections    : 1;                //Allow players to switch from one team to another
+    bool        bAllowJoiners       : 1;                //Allow players to join a game in progress
+    bool        bLockLobby          : 1;                //Prevent new players from joining a game
+    bool        bLockSides          : 1;                //Prevent players from switching sides
+    bool        bLockTeamSettings   : 1;                //Prevent players from changing team attributes like name
+    bool        bLockGameOpen       : 1;                //Prevent players from limiting the size of the game
+    bool        bStations           : 1;        //??
+    bool        bScoresCount        : 1;        //??
+    bool        bSquadGame          : 1;        //??
+    bool        bDrones             : 1;        //??
+    bool        iResources          : 1;        //??
+    bool        bResourceAmountsVisible : 1;    //??
+    bool        bRandomWormholes    : 1;        //??
+    bool        bNoTeams            : 1;        //??
+    bool        bShowHomeSector     : 1;                //Show everything in a player's home sector at start of game
+    bool        bAllowFriendlyFire  : 1;                //Allow friends to damage friends
+    bool        bObjectModelCreated : 1;                //Was this game created by admin tools or the server app?
+    bool        bLobbiedGame        : 1;                //Is this game listed in an internet lobby?
+    bool        bClubGame           : 1;                //Is this game on the zone club?
+    bool        bAutoStart          : 1;                //Does the game start automatically when all sides are ready?
+    bool        bAutoRestart        : 1;                //Does the game restart automatically
+    bool        bAllowRestart       : 1;                //Can the game be restarted at all?
+	bool        bExperimental       : 1;                // mmf 10/07 Experimental game type
 	float       fGoalTeamMoney;                         //Cost of win the game tech = fGoalTeamMoney * WinTheGameMoney, 0 == no win the game tech
-	int         verIGCcore;                             //this is set only by the server, so the client can know whether it needs to get a new igc static core
-	float       nPlayerSectorTreasureRate;              //# of treasures that generate/second in player sectors
-	float       nNeutralSectorTreasureRate;             //                                       neutral
-	float       dtGameLength;                           //Seconds till end of game, 0 == no limit
-	float       fHe3Density;                            //Mulitplier on He3 found at asteroids
-	Money       m_killPenalty;                  //Not used
-	Money       m_killReward;                   //Not used
-	Money       m_ejectPenalty;                 //Not used
-	Money       m_ejectReward;                  //Not used
+    int         verIGCcore;                             //this is set only by the server, so the client can know whether it needs to get a new igc static core
+    float       nPlayerSectorTreasureRate;              //# of treasures that generate/second in player sectors
+    float       nNeutralSectorTreasureRate;             //                                       neutral
+    float       dtGameLength;                           //Seconds till end of game, 0 == no limit
+    float       fHe3Density;                            //Mulitplier on He3 found at asteroids
+    Money       m_killPenalty;                  //Not used
+    Money       m_killReward;                   //Not used
+    Money       m_ejectPenalty;                 //Not used
+    Money       m_ejectReward;                  //Not used
 
-	Time        timeStart;                              //Time at which the game started
-	float       fStartCountdown;                        //Countdown (seconds) between automatically restarting missions
-	float       fRestartCountdown;                      //Countdown (seconds) between automatically restarting missions
+    Time        timeStart;                              //Time at which the game started
+    float       fStartCountdown;                        //Countdown (seconds) between automatically restarting missions
+    float       fRestartCountdown;                      //Countdown (seconds) between automatically restarting missions
 
-	CivID       rgCivID[c_cSidesMax];                   //IDs within the szIGCCore data set
-	short       iGoalConquestPercentage;                //% of flagged stations that need to be held to win the game
-	short       iGoalTerritoryPercentage;               //sole control of % of territories
-	short       iGoalArtifactsPercentage;       //Not used
-	short       nGoalFlagsCount;                        //# of enemy flags returned to station to win
-	short       nGoalArtifactsCount;                    //# of neutral artifacts returned to station to win
-	short       nGoalTeamKills;                         //Number of kills required to end the game
-	short       tsiPlayerStart;                         //Treasure index for random treasures that start in player sectors. NA == none
-	short       tsiNeutralStart;                        //                                                  neutral
-	short       tsiPlayerRegenerate;                    //Treasure index for random treasures that spawn in player sectors, NA = none
-	short       tsiNeutralRegenerate;                   //                                                  neutral
-	float       fStartingMoney;                         //Multiplier on team starting money
-	short       iLives;                                 //Player must die more than this number of times to be exit, c_cUnlimitedLives = unlimited
-	MapMakerID  mmMapType;                              //Map type
-	short       iMapSize;								//KGJV: non zero value = 2 starting garrisons
-	short       iRandomEncounters;                      //Use to indicate how many alephs are randomly removed
-	short       bNeutralSectors;                //Not used
-	short       iAlephPositioning;              //Not used
-	short       iAlephsPerSector;               //Not used
-	short       nTeams;                                 //Number of sides in the game
-	short       iMinRank;                               //Minimum player rank
-	short       iMaxRank;                               //Maximum player rank
-	int         nInvitationListID;                      // zero means no invitation required
+    CivID       rgCivID[c_cSidesMax];                   //IDs within the szIGCCore data set
+    short       iGoalConquestPercentage;                //% of flagged stations that need to be held to win the game
+    short       iGoalTerritoryPercentage;               //sole control of % of territories
+    short       iGoalArtifactsPercentage;       //Not used
+    short       nGoalFlagsCount;                        //# of enemy flags returned to station to win
+    short       nGoalArtifactsCount;                    //# of neutral artifacts returned to station to win
+    short       nGoalTeamKills;                         //Number of kills required to end the game
+    short       tsiPlayerStart;                         //Treasure index for random treasures that start in player sectors. NA == none
+    short       tsiNeutralStart;                        //                                                  neutral
+    short       tsiPlayerRegenerate;                    //Treasure index for random treasures that spawn in player sectors, NA = none
+    short       tsiNeutralRegenerate;                   //                                                  neutral
+    float       fStartingMoney;                         //Multiplier on team starting money
+    short       iLives;                                 //Player must die more than this number of times to be exit, c_cUnlimitedLives = unlimited
+    MapMakerID  mmMapType;                              //Map type
+    short       iMapSize;								//KGJV: non zero value = 2 starting garrisons
+    short       iRandomEncounters;                      //Use to indicate how many alephs are randomly removed
+    short       bNeutralSectors;                //Not used
+    short       iAlephPositioning;              //Not used
+    short       iAlephsPerSector;               //Not used
+    short       nTeams;                                 //Number of sides in the game
+    short       iMinRank;                               //Minimum player rank
+    short       iMaxRank;                               //Maximum player rank
+    int         nInvitationListID;                      // zero means no invitation required
 
-	short       iMaxImbalance;                          //Maximum allowed difference between smallest and largest team
+    short       iMaxImbalance;                          //Maximum allowed difference between smallest and largest team
 
-	short       nPlayerSectorAsteroids;                 //# generic asteroids in player sector
-	short       nNeutralSectorAsteroids;                //                       neutral
+    short       nPlayerSectorAsteroids;                 //# generic asteroids in player sector
+    short       nNeutralSectorAsteroids;                //                       neutral
 
-	short       nPlayerSectorTreasures;                 //# of treasures placed in player sector to start with
-	short       nNeutralSectorTreasures;                //                         neutral
+    short       nPlayerSectorTreasures;                 //# of treasures placed in player sector to start with
+    short       nNeutralSectorTreasures;                //                         neutral
 
-	short       nPlayerSectorMineableAsteroids;         //# of He3 asteroids in player sector
-	short       nNeutralSectorMineableAsteroids;        //                      neutral
+    short       nPlayerSectorMineableAsteroids;         //# of He3 asteroids in player sector
+    short       nNeutralSectorMineableAsteroids;        //                      neutral
 
-	short       nPlayerSectorSpecialAsteroids;          //# of special asteroids (C, U or Si) in player sector
-	short       nNeutralSectorSpecialAsteroids;         //                                       neutral
+    short       nPlayerSectorSpecialAsteroids;          //# of special asteroids (C, U or Si) in player sector
+    short       nNeutralSectorSpecialAsteroids;         //                                       neutral
 
-	unsigned char nMinPlayersPerTeam;                   //Min players on team
-	unsigned char nMaxPlayersPerTeam;                   //Max players on team
+    unsigned char nMinPlayersPerTeam;                   //Min players on team
+    unsigned char nMaxPlayersPerTeam;                   //Max players on team
 
-	char        nInitialMinersPerTeam;                  //Number of miners to start the game with
-	char        nMaxDronesPerTeam;                      //Maximum # of drones a team is allowed to control
+    char        nInitialMinersPerTeam;                  //Number of miners to start the game with
+    char        nMaxMinersPerTeam;                      //Maximum # of miners a team is allowed to control
 
-	short       nTotalMaxPlayersPerGame;                //Maximum # of players per game (mostly used for StandAlone server)
+    short       nTotalMaxPlayersPerGame;                //Maximum # of players per game (mostly used for StandAlone server)
 
-	MissionParams()
-	{
-		Reset();
-	}
+    MissionParams()
+    {
+        Reset();
+    }
 
-	void    Reset(void)
-	{
-		ZeroMemory(this, sizeof(*this));
-		//
-		// default to reasonable values
-		//
-		strcpy(strGameName, "Uninitialized Game Name");
-		szIGCStaticFile[0] = '\0';
-		m_killPenalty = 0;
-		m_killReward = 0;
+    void    Reset(void)
+    {
+        ZeroMemory(this, sizeof(*this));
+        //
+        // default to reasonable values
+        //
+        strcpy(strGameName, "Uninitialized Game Name");
+        szIGCStaticFile[0] = '\0';
+        m_killPenalty                   = 0;
+        m_killReward                    = 0;
 
-		m_ejectPenalty = 0;
-		m_ejectReward = 0;
+        m_ejectPenalty                  = 0;
+        m_ejectReward                   = 0;
 
-		bEjectPods = true;
-		bInvulnerableStations = false;
-		bAllowPrivateTeams = true;
-		bAllowEmptyTeams = false;
-		bAllowAlliedRip = false; //imago 7/8/09 ALLY
-		bAllowAlliedViz = false; //imago 7/8/09 ALLY 7/17/09 done testing, defaults off unless allies
-		bShowMap = false;
-		bAllowDevelopments = true;
-		bAllowShipyardPath = true;
-		bAllowTacticalPath = true;
-		bAllowSupremacyPath = true;
-		bAllowExpansionPath = true;
-		bPowerUps = true;
-		bAllowJoiners = true;
-		bLockLobby = false;
-		bLockSides = false;
-		bLockTeamSettings = false;
-		bAllowDefections = false;
-		bStations = true;
-		bScoresCount = true;
-		bSquadGame = false;
-		bDrones = true;
-		iResources = 0;
-		bResourceAmountsVisible = true;
-		bRandomWormholes = true;
-		bNoTeams = false;
-		bObjectModelCreated = false;
-		bLobbiedGame = false;
-		bClubGame = false;
-		bAutoStart = false;
-		bAutoRestart = false;
-		bAllowRestart = true;
-		bExperimental = false; // mmf 10/07 Experimental game type
-		nInvitationListID = 0;
+        bEjectPods                      = true ;
+        bInvulnerableStations           = false;
+        bAllowPrivateTeams              = true ;
+        bAllowEmptyTeams                = false;
+        bShowMap                        = false;
+        bAllowDevelopments              = true ;
+        bAllowShipyardPath              = true ;
+        bAllowTacticalPath              = true ;
+        bAllowSupremacyPath             = true ;
+        bAllowExpansionPath             = true ;
+        bPowerUps                       = true ;
+        bAllowJoiners                   = true ;
+        bLockLobby                      = false;
+        bLockSides                      = false;
+        bLockTeamSettings               = false;
+        bAllowDefections                = false;
+        bStations                       = true ;
+        bScoresCount                    = false;
+        bSquadGame                      = false;
+        bDrones                         = true ;
+        iResources                      = 0;
+        bResourceAmountsVisible         = true ;
+        bRandomWormholes                = true ;
+        bNoTeams                        = false;
+        bShowHomeSector                 = false;
+        bObjectModelCreated             = false;
+        bLobbiedGame                    = false;
+        bClubGame                       = false;
+        bAutoStart                      = false;
+        bAutoRestart                    = false;
+        bAllowRestart                   = true;
+		bExperimental                   = false; // mmf 10/07 Experimental game type
+        nInvitationListID               = 0;
 
-		fStartCountdown = 15.0f;
-		fRestartCountdown = 60.0f;
+        fStartCountdown                 = 15.0f;
+        fRestartCountdown               = 60.0f;
 
-		//
-		// Assign to NA for now, this cues the mission maker to reset it later
-		//
-		for (int iSide = 0; iSide < c_cSidesMax; iSide++)
-		{
-			rgCivID[iSide] = NA;
-		}
+        //
+        // Assign to NA for now, this cues the mission maker to reset it later
+        //
+        for (int iSide = 0; iSide < c_cSidesMax; iSide++) 
+        {
+            rgCivID[iSide] = NA;
+        }
 
-		fHe3Density = 1.0f;
-		fStartingMoney = 1.0f;
-		fGoalTeamMoney = 0;
-		tsiPlayerStart = 1;
-		tsiNeutralStart = 1;
-		tsiPlayerRegenerate = 1;
-		tsiNeutralRegenerate = 1;
-		iLives = c_cUnlimitedLives;
-		nGoalTeamKills = 0;
-		mmMapType = c_mmHiLo;
-		iMapSize = 0;
-		iRandomEncounters = 0;
-		bNeutralSectors = true;
-		iAlephPositioning = 0;
-		iAlephsPerSector = 0;
-		nTeams = 2;
-		iMinRank = -1;
-		iMaxRank = 1000;
+        fHe3Density                     = 1.0f;
+        fStartingMoney                  = 1.0f;
+        fGoalTeamMoney                  = 0; 
+        tsiPlayerStart                  = 1;
+        tsiNeutralStart                 = 1;
+        tsiPlayerRegenerate             = 1;
+        tsiNeutralRegenerate            = 1;
+        iLives                          = c_cUnlimitedLives;
+        nGoalTeamKills                  = 0;
+        mmMapType                       = c_mmHiLo;
+        iMapSize                        = 0;
+        iRandomEncounters               = 0;
+        bNeutralSectors                 = true;
+        iAlephPositioning               = 0;
+        iAlephsPerSector                = 0;
+        nTeams                          = 2;
+        iMinRank                        = -1;
+        iMaxRank                        = 1000;
 
-		iMaxImbalance = 1;
+        iMaxImbalance                   = 1;
 
-		dtGameLength = 0.0f;
+        dtGameLength                    = 0.0f;
 
-		iGoalConquestPercentage = 100;
-		iGoalTerritoryPercentage = 100;
-		iGoalArtifactsPercentage = 100;
-		nGoalFlagsCount = 0;
-		nGoalArtifactsCount = 0;
+        iGoalConquestPercentage         = 100;
+        iGoalTerritoryPercentage        = 100;
+        iGoalArtifactsPercentage        = 100;
+        nGoalFlagsCount                 = 0;
+        nGoalArtifactsCount             = 0;
 
-		bShowHomeSector = false;
+        bShowHomeSector                 = false;
 
-		nPlayerSectorAsteroids = 20;
-		nNeutralSectorAsteroids = 20;
+        nPlayerSectorAsteroids          = 20;
+        nNeutralSectorAsteroids         = 20;
 
-		nPlayerSectorTreasures = 0;
-		nNeutralSectorTreasures = 5;
+        nPlayerSectorTreasures          = 0;
+        nNeutralSectorTreasures         = 5;
 
-		nPlayerSectorTreasureRate = 0.2f / 60.0f;  //0.2 per minute == 0.2/60 per second
-		nNeutralSectorTreasureRate = 0.5f / 60.0f;
+        nPlayerSectorTreasureRate       = 0.2f / 60.0f;  //0.2 per minute == 0.2/60 per second
+        nNeutralSectorTreasureRate      = 0.5f / 60.0f;
 
-		nPlayerSectorMineableAsteroids = 2;
-		nNeutralSectorMineableAsteroids = 4;
+        nPlayerSectorMineableAsteroids  = 2;
+        nNeutralSectorMineableAsteroids = 4;
 
-		nPlayerSectorSpecialAsteroids = 1;
-		nNeutralSectorSpecialAsteroids = 1;
+        nPlayerSectorSpecialAsteroids   = 1;
+        nNeutralSectorSpecialAsteroids  = 1;
 
-		nInitialMinersPerTeam = 1;
-		nMaxDronesPerTeam = 4;
+        nInitialMinersPerTeam           = 1;
+        nMaxMinersPerTeam               = 4;
 
-		nMinPlayersPerTeam = 1;   // KGJV #114 changed
-		nMaxPlayersPerTeam = 100; // KGJV #114 changed
+        nMinPlayersPerTeam              = 1;   // KGJV #114 changed
+        nMaxPlayersPerTeam              = 100; // KGJV #114 changed
 
-		nTotalMaxPlayersPerGame = 0x7FFF;
-	}
+        nTotalMaxPlayersPerGame         = 0x7FFF;
+    }
 
-	const char* Invalid(bool bFromClient = false) const
-	{
-		// do some data validation... should do this is a cleaner way
+    const char* Invalid(bool bFromClient = false) const
+    {
+        // do some data validation... should do this is a cleaner way
 
-		if (bFromClient)
-		{
-			if ((nMaxPlayersPerTeam > 100) ||
-				(nMaxPlayersPerTeam < 1))
-			{
-				return "Maximum number of players must be between 1 and 100.";
-			}
-			else if (IsNoWinningConditionsGame())
-			{
-				return "You must choose one or more winning conditions.";
-			}
+        if (bFromClient)
+        {
+            if ((nMaxPlayersPerTeam > 100) ||
+                 (nMaxPlayersPerTeam < 1))
+            {
+                return "Maximum number of players must be between 1 and 100.";
+            }
+            else if (IsNoWinningConditionsGame())
+            {
+                return "You must choose one or more winning conditions.";
+            }
 			else if (bAutoRestart || (bObjectModelCreated && bClubGame)) // KGJV #62 || bAllowEmptyTeams)
-			{
-				return "HACK: one or more admin-only flags are set.";
-			}
-		}
+            {
+                return "HACK: one or more admin-only flags are set.";
+            }
+        }
 
-		if (nInitialMinersPerTeam > nMaxDronesPerTeam)
-		{
-			return "Initial miners per team must be less than max miners per team.";
-		}
-		else if (nMaxDronesPerTeam > 10)
-		{
-			return "Max drones per team must be less than or equal to 10.";
-		}
-		else if (nNeutralSectorSpecialAsteroids > 9)
-		{
-			return "NeutralSectorSpecialAsteroids must be less than 10.";
-		}
-		else if (nPlayerSectorSpecialAsteroids > 9)
-		{
-			return "PlayerSectorSpecialAsteroids must be less than 10.";
-		}
-		else if (nNeutralSectorMineableAsteroids > 9)
-		{
-			return "NeutralSectorMineableAsteroids must be less than 10.";
-		}
-		else if (nPlayerSectorMineableAsteroids > 9)
-		{
-			return "PlayerSectorMineableAsteroids must be less than 10.";
-		}
-		else if (nNeutralSectorTreasureRate > 1.0f / 60.0f)
-		{
-			return "NeutralSectorTreasureRate must be less than 1/60.";
-		}
-		else if (nPlayerSectorTreasureRate > 1.0f / 60.0f)
-		{
-			return "PlayerSectorTreasureRate must be less than 1/60.";
-		}
-		else if (nNeutralSectorTreasures > 20)
-		{
-			return "NeutralSectorTreasures must be less than 21.";
-		}
-		else if (nPlayerSectorTreasures > 20)
-		{
-			return "PlayerSectorTreasures must be less than 21.";
-		}
-		else if (nNeutralSectorAsteroids > 40)
-		{
-			return "NeutralSectorAsteroids must be less than 40.";
-		}
-		else if (nPlayerSectorAsteroids > 40)
-		{
-			return "PlayerSectorAsteroids must be less than 40.";
-		}
-		else if ((nGoalArtifactsCount < 0) || (nGoalArtifactsCount > 100))
-		{
-			return "GoalArtifactsCount must be between 0% and 100%.";
-		}
-		else if ((nGoalFlagsCount < 0) || (nGoalFlagsCount > 100))
-		{
-			return "GoalFlagsCount must be between 0% and 100%.";
-		}
-		else if ((fHe3Density < 0.0f) || (fHe3Density > 9.0f))
-		{
-			return "He3Density must be between 0 and 9.";
-		}
-		else if ((fGoalTeamMoney < 0.0f) || (fGoalTeamMoney > 9.0f))
-		{
-			return "GoalTeamMoney must be between 0 and 9.";
-		}
-		else if ((fStartingMoney < 0.0f) || (fStartingMoney > 9.0f))
-		{
-			return "StartingMoney must be between 0 and 9.";
-		}
-		else if (NULL == memchr(strGameName, 0, c_cbGameName))
-		{
-			return "invalid game name";
-		}
-		else if (NULL == memchr(szIGCStaticFile, 0, c_cbFileName))
-		{
-			return "invalid IGC static file name";
-		}
-		else if (NULL == memchr(szCustomMapFile, 0, c_cbFileName))
-		{
-			return "invalid IGC static file name";
-		}
-		else if (NULL == memchr(strGamePassword, 0, c_cbGamePassword))
-		{
-			return "invalid IGC static file name";
-		}
-		else if ((nTeams > 6) || (nTeams < 2))
-		{
-			return "Number of teams must be between 2 and 6.";
-		}
-		else if (nTotalMaxPlayersPerGame < 1)
-		{
-			return "Number of players per game must be greater than 0.";
-		}
-		else if ((nMaxPlayersPerTeam > 200) ||
-			(nMaxPlayersPerTeam < 1))
-		{
-			return "Maximum number of players must be between 1 and 200.";
-		}
-		else if (nMinPlayersPerTeam < 1)
-		{
-			return "Minimum number of players must be 1 or greater.";
-		}
-		else if (nMinPlayersPerTeam > nMaxPlayersPerTeam)
-		{
-			return "Minimum number of players must not be greater than the maximum number of players.";
-		}
-		// BT - STEAM - Removing the limitation on defections and imbal for Steam stats. Steam 
-		// doesn't care how many teams you show up on. It's your play time that counts!
-		//      else if (bScoresCount && bAllowDefections)
-		//      {
-		//          return "Scores can't be counted for a game where defections are allowed; "
-		//              "please turn off defections or stats count.";
-		//      }
-		//// TE: Confirms that the MaxImbalance = AUTO when scores count
-		//      else if (bScoresCount && iMaxImbalance != 0x7ffe)
-		//      {
-		//          return "Scores can't be counted for a game where the MaxImbalance setting is not Auto; "
-		//              "please set the MaxImbalance setting to Auto, or turn off stats count.";
-		//      }
-		else if (IsConquestGame() && bInvulnerableStations)
-		{
-			return "You can't play a conquest game with invulnerable stations; "
-				"You must disable the conquest winning condition or turn off "
-				"the invulnerable stations option.";
-		}
-		else if (IsProsperityGame() && !bAllowDevelopments)
-		{
-			return "You can't play a prosperity game with developments turned off; "
-				"You must disable the prosperity winning condition or turn on "
-				"developments.";
-		}
-		else if (nPlayerSectorTreasureRate > 0.01 || nNeutralSectorTreasureRate > 0.01)
-		{
-			return "Treasure rate(s) too high; max is 0.01";
-		}
-		else if (IsTerritoryGame())
-		{
-			if (mmMapType == c_mmBrawl)
-				return "Brawl maps can not have a territory win condition";
-			else if ((nTeams == 2) &&
-				((mmMapType == c_mmSingleRing) ||
-				(mmMapType == c_mmDoubleRing)))
-				return "Small maps can not have a territory win condition";
-		}
+        if (nInitialMinersPerTeam > nMaxMinersPerTeam)
+        {
+            return "Initial miners per team must be less than max miners per team.";
+        }
+        else if (nMaxMinersPerTeam > 10)
+        {
+            return "Max miners per team must be less than or equal to 10.";
+        }
+        else if (nNeutralSectorSpecialAsteroids > 9)
+        {
+            return "NeutralSectorSpecialAsteroids must be less than 10.";
+        }
+        else if (nPlayerSectorSpecialAsteroids > 9)
+        {
+            return "PlayerSectorSpecialAsteroids must be less than 10.";
+        }
+        else if (nNeutralSectorMineableAsteroids > 9)
+        {
+            return "NeutralSectorMineableAsteroids must be less than 10.";
+        }
+        else if (nPlayerSectorMineableAsteroids > 9)
+        {
+            return "PlayerSectorMineableAsteroids must be less than 10.";
+        }
+        else if (nNeutralSectorTreasureRate > 1.0f/60.0f)
+        {
+            return "NeutralSectorTreasureRate must be less than 1/60.";
+        }
+        else if (nPlayerSectorTreasureRate > 1.0f/60.0f)
+        {
+            return "PlayerSectorTreasureRate must be less than 1/60.";
+        }
+        else if (nNeutralSectorTreasures > 20)
+        {
+            return "NeutralSectorTreasures must be less than 21.";
+        }
+        else if (nPlayerSectorTreasures > 20)
+        {
+            return "PlayerSectorTreasures must be less than 21.";
+        }
+        else if (nNeutralSectorAsteroids > 40)
+        {
+            return "NeutralSectorAsteroids must be less than 40.";
+        }
+        else if (nPlayerSectorAsteroids > 40)
+        {
+            return "PlayerSectorAsteroids must be less than 40.";
+        }            
+        else if ((nGoalArtifactsCount < 0) || (nGoalArtifactsCount > 100))
+        {
+            return "GoalArtifactsCount must be between 0% and 100%.";
+        }
+        else if ((nGoalFlagsCount < 0) || (nGoalFlagsCount > 100))
+        {
+            return "GoalFlagsCount must be between 0% and 100%.";
+        }
+        else if ((fHe3Density < 0.0f) || (fHe3Density > 9.0f))
+        {
+            return "He3Density must be between 0 and 9.";
+        }
+        else if ((fGoalTeamMoney < 0.0f) || (fGoalTeamMoney > 9.0f))
+        {
+            return "GoalTeamMoney must be between 0 and 9.";
+        }
+        else if ((fStartingMoney < 0.0f) || (fStartingMoney > 9.0f))
+        {
+            return "StartingMoney must be between 0 and 9.";
+        }
+        else if (NULL == memchr(strGameName, 0, c_cbGameName))
+        {
+            return "invalid game name";
+        }
+        else if (NULL == memchr(szIGCStaticFile, 0, c_cbFileName))
+        {
+            return "invalid IGC static file name";
+        }
+        else if (NULL == memchr(szCustomMapFile, 0, c_cbFileName))
+        {
+            return "invalid IGC static file name";
+        }
+        else if (NULL == memchr(strGamePassword, 0, c_cbGamePassword))
+        {
+            return "invalid IGC static file name";
+        }
+        else if ((nTeams > 6) || (nTeams < 2))
+        {
+            return "Number of teams must be between 2 and 6.";
+        }
+        else if (nTotalMaxPlayersPerGame < 1)
+        {
+            return "Number of players per game must be greater than 0.";
+        }
+        else if ((nMaxPlayersPerTeam > 200) ||
+                 (nMaxPlayersPerTeam < 1))
+        {
+            return "Maximum number of players must be between 1 and 200.";
+        }
+        else if (nMinPlayersPerTeam < 1)
+        {
+            return "Minimum number of players must be 1 or greater.";
+        }
+        else if (nMinPlayersPerTeam > nMaxPlayersPerTeam)
+        {
+            return "Minimum number of players must not be greater than the maximum number of players.";
+        }
+        else if (bScoresCount && bAllowDefections)
+        {
+            return "Scores can't be counted for a game where defections are allowed; "
+                "please turn off defections or stats count.";
+        }
+		// TE: Confirms that the MaxImbalance = AUTO when scores count
+        else if (bScoresCount && iMaxImbalance != 0x7ffe)
+        {
+            return "Scores can't be counted for a game where the MaxImbalance setting is not Auto; "
+                "please set the MaxImbalance setting to Auto, or turn off stats count.";
+        }
+        else if (IsConquestGame() && bInvulnerableStations)
+        {
+            return "You can't play a conquest game with invulnerable stations; "
+                "You must disable the conquest winning condition or turn off "
+                "the invulnerable stations option.";
+        }
+        else if (IsProsperityGame() && !bAllowDevelopments)
+        {
+            return "You can't play a prosperity game with developments turned off; "
+                "You must disable the prosperity winning condition or turn on "
+                "developments.";
+        }
+        else if (nPlayerSectorTreasureRate > 0.01 ||  nNeutralSectorTreasureRate > 0.01)
+        {
+            return "Treasure rate(s) too high; max is 0.01";
+        }
+        else if (IsTerritoryGame())
+        {
+            if (mmMapType == c_mmBrawl)
+                return "Brawl maps can not have a territory win condition";
+            else if ((nTeams == 2) &&
+                     ((mmMapType == c_mmSingleRing) ||
+                      (mmMapType == c_mmDoubleRing)))
+                return "Small maps can not have a territory win condition";
+        }
 
-		return ImapMakerIGC::IsValid(this);
-	}
+        return ImapMakerIGC::IsValid(this);
+    }
 
-	//
-	// Winning Condition Info
-	//
+    //
+    // Winning Condition Info
+    //
 
-	bool IsConquestGame() const
-	{
-		return iGoalConquestPercentage != 0;
-	}
+    bool IsConquestGame() const
+    {
+        return iGoalConquestPercentage != 0;
+    }
 
-	bool IsTerritoryGame() const
-	{
-		return iGoalTerritoryPercentage != 100;
-	}
+    bool IsTerritoryGame() const
+    {
+        return iGoalTerritoryPercentage != 100;
+    }
 
-	bool IsDeathMatchGame() const
-	{
-		return nGoalTeamKills != 0;
-	}
+    bool IsDeathMatchGame() const
+    {
+        return nGoalTeamKills != 0;
+    }
 
-	bool IsCountdownGame() const
-	{
-		return dtGameLength != 0.0f;
-	}
+    bool IsCountdownGame() const
+    {
+        return dtGameLength != 0.0f;
+    }
 
-	bool IsProsperityGame() const
-	{
-		return fGoalTeamMoney != 0;
-	}
+    bool IsProsperityGame() const
+    {
+        return fGoalTeamMoney != 0;
+    }
 
-	bool IsArtifactsGame() const
-	{
-		return (nGoalArtifactsCount != 0);
-	}
+    bool IsArtifactsGame() const
+    {
+        return (nGoalArtifactsCount != 0);
+    }
 
-	bool IsFlagsGame() const
-	{
-		return (nGoalFlagsCount != 0);
-	}
+    bool IsFlagsGame() const
+    {
+        return (nGoalFlagsCount != 0);
+    }
 
-	bool IsNoWinningConditionsGame() const
-	{
-		return !(IsConquestGame() ||
-			IsDeathMatchGame() ||
-			IsCountdownGame() ||
-			IsProsperityGame() ||
-			IsArtifactsGame() ||
-			IsTerritoryGame() ||
-			IsFlagsGame());
-	}
+    bool IsNoWinningConditionsGame() const
+    {
+        return !(IsConquestGame()   ||
+                 IsDeathMatchGame() ||
+                 IsCountdownGame()  ||
+                 IsProsperityGame() ||
+                 IsArtifactsGame()  ||
+                 IsTerritoryGame()  ||
+                 IsFlagsGame());
+    }
 
-	float GetCountDownTime() const
-	{
-		return dtGameLength;
-	}
+    float GetCountDownTime() const
+    {
+        return dtGameLength;
+    }
 
-	int GetConquestPercentage() const
-	{
-		return iGoalConquestPercentage;
-	}
+    int GetConquestPercentage() const
+    {
+        return iGoalConquestPercentage;
+    }
 
-	int GetTerritoryPercentage() const
-	{
-		return iGoalTerritoryPercentage;
-	}
+    int GetTerritoryPercentage() const
+    {
+        return iGoalTerritoryPercentage;
+    }
 
-	short GetDeathMatchKillLimit() const
-	{
-		return nGoalTeamKills;
-	}
+    short GetDeathMatchKillLimit() const
+    {
+        return nGoalTeamKills;
+    }
 
-	int GetArtifactsPercentage() const
-	{
-		return iGoalArtifactsPercentage;
-	}
-};
-
+    int GetArtifactsPercentage() const
+    {
+        return iGoalArtifactsPercentage;
+    }
+}; 
 
 //Utility data structures
 typedef  Slist_utl<IpartIGC*>           PartListIGC;

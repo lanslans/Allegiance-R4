@@ -4,9 +4,6 @@
 //#include <dplobby.h>
 #include <tchar.h>
 
-// BT - STEAM
-#include "steam_api.h"
-
 //
 // Headers for fed code.
 //
@@ -22,8 +19,6 @@
 #include "messagesLC.h"
 #include "..\Club\ClubMessages.h"
 #include "AutoDownload.h"
-
-#include "AllegianceSecurity.h" // BT - STEAM
 
 #ifdef USEAUTH
 #include "zauth.h"

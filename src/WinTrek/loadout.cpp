@@ -207,7 +207,7 @@ public:
                     case OT_droneType:
                     {
                         IdroneTypeIGC* pDronetype;
-                        int nMaxMiners = trekClient.MyMission()->GetMissionDef().misparms.nMaxDronesPerTeam;
+                        int nMaxMiners = trekClient.MyMission()->GetMissionDef().misparms.nMaxMinersPerTeam;
                         CastTo(pDronetype, m_pBucket->GetBuyable());
                         nTotalNumber = CountDronesOfType(pDronetype);
 
@@ -795,7 +795,7 @@ public:
               IdroneTypeIGC* pDronetype; 
               CastTo(pDronetype, pBucket->GetBuyable());
               if (PartListItem::CountDronesOfType(pDronetype) 
-                  >= trekClient.MyMission()->GetMissionDef().misparms.nMaxDronesPerTeam)
+                  >= trekClient.MyMission()->GetMissionDef().misparms.nMaxMinersPerTeam)
               {
                   return false;
               }
