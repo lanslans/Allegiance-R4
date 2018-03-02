@@ -1686,11 +1686,7 @@ class ExpandedTeamPane : public TeamPane
             // draw the player's Wing
             if (pplayer->SideID() == trekClient.GetSideID())
             {
-				int wid = pship->GetWingID();
-				if (wid < 0)
-					wid = 0;
-
-                psurface->DrawString(pfont, color, WinPoint(m_viColumns[4] + 2, 1), c_pszWingName[wid]);
+                psurface->DrawString(pfont, color, WinPoint(m_viColumns[4] + 2, 1), c_pszWingName[pship->GetWingID()]);
             }
 
 			// draw the rank: AEM 7.21.07
