@@ -7299,11 +7299,11 @@ public:
     {
 
 		// BT - STEAM - Only hit steam call backs every 100ms. 
-		/*if (now.clock() - lastCallbackTime > 100)
+		if (now.clock() - lastCallbackTime > 100)
 		{
 			lastCallbackTime = now.clock();
 			SteamAPI_RunCallbacks();
-		}*/
+		}
 
 		// - Imago: Only set AFK from inactivity when logged on
 		if (trekClient.m_fLoggedOn) {
