@@ -2282,7 +2282,7 @@ WinTrekClient::WinTrekClient(void)
 
     HKEY hKey;
 
-    if (ERROR_SUCCESS == ::RegCreateKeyEx(HKEY_CURRENT_USER,
+    if (ERROR_SUCCESS == ::RegCreateKeyEx(HKEY_LOCAL_MACHINE, 
         ALLEGIANCE_REGISTRY_KEY_ROOT,
         0, "", REG_OPTION_NON_VOLATILE, KEY_READ, NULL, &hKey, NULL))
     {
@@ -4469,7 +4469,7 @@ void WinTrekClient::SetCDKey(const ZString& strCDKey)
     //
     // save the new key for future use.
 	//
-    // if (ERROR_SUCCESS == ::RegCreateKeyEx(HKEY_CURRENT_USER, 
+    // if (ERROR_SUCCESS == ::RegCreateKeyEx(HKEY_LOCAL_MACHINE, 
     //    ALLEGIANCE_REGISTRY_KEY_ROOT,
     //    0, "", REG_OPTION_NON_VOLATILE, KEY_WRITE, NULL, &hKey, NULL))
     // {
@@ -4993,7 +4993,7 @@ void  WinTrekClient::SaveSquadMemberships(const char* szCharacterName)
 
     HKEY hKey;
 
-    if (ERROR_SUCCESS == ::RegCreateKeyEx(HKEY_CURRENT_USER,
+    if (ERROR_SUCCESS == ::RegCreateKeyEx(HKEY_LOCAL_MACHINE, 
         ALLEGIANCE_REGISTRY_KEY_ROOT "\\SquadMemberships",
         0, "", REG_OPTION_NON_VOLATILE, KEY_WRITE, NULL, &hKey, NULL))
     {
@@ -5009,7 +5009,7 @@ void  WinTrekClient::RestoreSquadMemberships(const char* szCharacterName)
 
     HKEY hKey;
 
-    if (ERROR_SUCCESS == ::RegCreateKeyEx(HKEY_CURRENT_USER,
+    if (ERROR_SUCCESS == ::RegCreateKeyEx(HKEY_LOCAL_MACHINE, 
         ALLEGIANCE_REGISTRY_KEY_ROOT "\\SquadMemberships",
         0, "", REG_OPTION_NON_VOLATILE, KEY_READ, NULL, &hKey, NULL))
     {
