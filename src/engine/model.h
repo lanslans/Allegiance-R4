@@ -133,8 +133,6 @@ public:
 
 class Image : public Value, public IMouseInput {
 protected:
-	//Image * m_pstringDrawImage;
-
     Bounds2 m_bounds;
 
     Image() : Value() {};
@@ -171,16 +169,6 @@ public:
     //
 
     virtual void Evaluate();
-
-	/*inline void SetStringDrawImage(Image *stringDrawImage)
-	{
-		m_pstringDrawImage = stringDrawImage;
-	}
-
-	inline Image * GetStringDrawImage()
-	{
-		return m_pstringDrawImage;
-	}*/
 };
 
 //////////////////////////////////////////////////////////////////////////////
