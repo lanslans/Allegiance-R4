@@ -1987,8 +1987,6 @@ struct  DataSideIGC
 
     unsigned char       conquest;
     unsigned char       territory;
-
-	char				allies; // #ALLY
 };
 
 struct  DataCivilizationIGC
@@ -2280,7 +2278,6 @@ class   CompactShipFractions         //5 bytes
         BytePercentage      m_bpAmmo;               //1
         BytePercentage      m_bpFuel;               //1
         BytePercentage      m_bpEnergy;             //1
-		BytePercentage      m_bpOre;                //1  //Xynth #156 7/2010
 
     public:
         void        SetHullFraction(float hf)
@@ -2331,16 +2328,6 @@ class   CompactShipFractions         //5 bytes
         {
             return m_bpEnergy * maxEnergy;
         }
-		//Xynth #156 7/2010 new functions for new m_bpOre data
-		float        GetOre(float maxOre) const
-        {
-            return m_bpOre * maxOre;
-        }
-
-		void        SetOre(float maxOre, float   ore)
-        {
-            m_bpOre = maxOre == 0.0f ? 0.0f : (ore / maxOre);
-        }        
 };
 
 class   ServerLightShipUpdate                           //8 bytes
@@ -4225,7 +4212,6 @@ class   ShipStatus
             m_state = c_ssDead;
             m_unknown = true;
             m_detected = false;
-			m_dTime = Time::Now().clock();
         }
 
         bool        operator != (const ShipStatus& ss)
@@ -4301,14 +4287,6 @@ class   ShipStatus
         {
             m_detected = bDetected;
         }
-        DWORD        GetStateTime(void) const
-        {
-            return m_dTime;
-        }
-        void        SetStateTime(DWORD    dTime)
-        {
-            m_dTime = dTime;
-        }
 
     private:
         HullID      m_hullID;
@@ -4318,7 +4296,6 @@ class   ShipStatus
         ShipState   m_state : 6;
         bool        m_unknown : 1;
         bool        m_detected : 1;
-		DWORD		m_dTime;
 };
 
 class ClusterSite : public AttachSite
