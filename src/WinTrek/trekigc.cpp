@@ -4237,9 +4237,6 @@ void      WinTrekClient::ReceiveChat(IshipIGC*   pshipSender,
                     bForMe = false;
                 }
 
-				if (wid < 0)
-					wid = 0;
-
                 strRecipient = c_pszWingName[wid];
             }
             break;
