@@ -740,7 +740,7 @@ HRESULT FedMessaging::OnSysMessage( const DPlayMsg& msg )
     // debugf("(FM=%8x %s) Create Player for %s (%u)\n", this, sOrC, name, lp->dpnidPlayer );
 
     CFMConnection * pcnxn = CreateConnection( name, lp->dpnidPlayer );
-    char szRemoteAddress[64];
+    char szRemoteAddress[16];
     GetIPAddress( *pcnxn, szRemoteAddress );
 
     debugf(" ip=%s\n", szRemoteAddress );
@@ -1597,7 +1597,7 @@ CFMGroup * FedMessaging::GetGroupFromDpid(DPID dpid)
 }
 
 
-HRESULT FedMessaging::GetIPAddress(CFMConnection & cnxn, char szRemoteAddress[64])
+HRESULT FedMessaging::GetIPAddress(CFMConnection & cnxn, char szRemoteAddress[16])
 {
   //assert( m_pDirectPlayServer != 0 );
 
