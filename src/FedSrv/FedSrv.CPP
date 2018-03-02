@@ -7484,7 +7484,7 @@ IHTTPSession * BeginConfigDownload()
   ZString strBuild(vi.GetFileBuildNumber());
 
   char szConfig[MAX_PATH];
-  lstrcpy(szConfig, "http://allegiance.zaphop.com/allegiance.txt");
+  lstrcpy(szConfig, "http://Allegiance.zone.com/Allegiance.cfg");
 
   CRegKey key;
   if (ERROR_SUCCESS == key.Open(HKEY_LOCAL_MACHINE, HKLM_FedSrv, KEY_READ))
