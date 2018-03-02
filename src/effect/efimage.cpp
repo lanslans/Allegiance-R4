@@ -8,9 +8,8 @@
 
 class JoystickImageImpl : public JoystickImage {
 private:
-	// BT - Added mousewheel support from R9
-    TArray<TRef<ModifiableNumber> , 20> m_ppnumber; //imago increased 8/12/09, again 7/10
-    TArray<TRef<ModifiableBoolean>, 20> m_ppboolButton; //imago increased 8/12/09, again 7/10
+    TArray<TRef<ModifiableNumber> , 2> m_ppnumber;
+    TArray<TRef<ModifiableBoolean>, 3> m_ppboolButton;
     bool                               m_bJoystickEnabled;
     bool                               m_bButtonsEnabled;
     bool                               m_bJustEnabled;
@@ -23,11 +22,8 @@ public:
         m_bButtonsEnabled(false),
         m_bJustEnabled(false)
     {
-		// BT - Added mousewheel support from R9
-		//Imago 7/10
-        for (int index = 0; index < m_ppboolButton.GetCount(); index++) {
-            m_ppnumber[index] = new ModifiableNumber(false);
-        }
+        m_ppnumber[0] = new ModifiableNumber(0);
+        m_ppnumber[1] = new ModifiableNumber(0);
 
         for (int index = 0; index < m_ppboolButton.GetCount(); index++) {
             m_ppboolButton[index] = new ModifiableBoolean(false);
@@ -50,7 +46,6 @@ public:
             } else {
                 m_ppnumber[0]->SetValue(0);
                 m_ppnumber[1]->SetValue(0);
-                m_ppnumber[2]->SetValue(0); // BT - Added mousewheel support from R9
             }
         }
 
@@ -90,10 +85,7 @@ public:
     {
         return false;
     }
-	//Imago 7/10 #187 // BT - Added mousewheel support from R9
-	void SetRanges() {
 
-	}
     void CreateEffects()
     {
     }
@@ -118,15 +110,6 @@ public:
             case 0: return "Left";
             case 1: return "Right";
             case 2: return "Middle";
-
-				// BT - Added mousewheel support from R9
-            case 3: return "XButton1";
-            case 4: return "XButton2";
-            case 5: return "XButton3";
-            case 6: return "XButton4";
-            case 7: return "XButton5";
-            case 8: return "Wheel Up";
-            case 9: return "Wheel Down";
         }
 
         return ZString();
@@ -140,12 +123,12 @@ public:
 
     int GetValueCount()
     {
-        return 3; //Imago 8/13/09 was 2// BT - Added mousewheel support from R9
+        return 2;
     }
 
     int GetButtonCount()
     {
-        return 10; //Imago 8/13/09 was 3// BT - Added mousewheel support from R9
+        return 3;
     }
 
     Boolean* IsDown(int id)
@@ -207,7 +190,7 @@ public:
     MouseResult Button(IInputProvider* pprovider, const Point& point, int button, bool bCaptured, bool bInside, bool bDown)
     {
         if (m_bButtonsEnabled) {
-            if (button <= 20) { //was 3 Imago 8/13/09, 7/10 // BT - Added mousewheel support from R9
+            if (button <= 3) {
                 m_ppboolButton[button]->SetValue(bDown);
             }
         }
@@ -528,9 +511,6 @@ public:
         #ifndef FixPermedia
             pcontext->SetShadeMode(ShadeModeCopy);
         #endif
-
-			// BT - Fixing black background on planets under some video cards.
-		pcontext->SetBlendMode(BlendModeAdd);
 
         TList<PosterData, DefaultNoEquals>::Iterator iter(m_list);
 

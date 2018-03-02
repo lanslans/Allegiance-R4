@@ -113,7 +113,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..\Lib\AllegianceSecurity;..\Lib\Steam;..\Inc;..\igc;..\_Utility;..\ZLib;..\WinTrek;..\jpeg;..\clintlib;..\Zone;..\training;..\lobby;..\engine;..\guids;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_ALLOW_RTCc_IN_STL;XXDUMPMSGSXX;WIN32;_WINDOWS;STRICT;_AFXDLL;_DEBUG;DEBUG;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_ALLOW_RTCc_IN_STL;DUMPMSGS;WIN32;_WINDOWS;STRICT;_AFXDLL;_DEBUG;DEBUG;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
