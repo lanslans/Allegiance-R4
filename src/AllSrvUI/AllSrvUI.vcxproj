@@ -22,7 +22,6 @@
     <ProjectGuid>{97B8370B-16BC-4A2F-A0FE-4BEEF2EAED42}</ProjectGuid>
     <RootNamespace>AllSrvUI</RootNamespace>
     <Keyword>MakeFileProj</Keyword>
-    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='FZRetail|Win32'" Label="Configuration">

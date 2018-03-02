@@ -22,7 +22,6 @@
     <ProjectGuid>{F150276A-D7D8-4C24-AA41-170A6F3D4CF9}</ProjectGuid>
     <RootNamespace>mdledit</RootNamespace>
     <Keyword>Win32Proj</Keyword>
-    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='FZRetail|Win32'" Label="Configuration">

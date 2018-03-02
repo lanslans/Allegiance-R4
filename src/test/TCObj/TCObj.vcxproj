@@ -22,7 +22,6 @@
     <ProjectGuid>{CAFFB3DB-EADD-46A1-ABAE-3A341011B0A6}</ProjectGuid>
     <RootNamespace>TCObj</RootNamespace>
     <Keyword>MakeFileProj</Keyword>
-    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='FZRetail|Win32'" Label="Configuration">

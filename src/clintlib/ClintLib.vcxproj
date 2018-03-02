@@ -22,7 +22,6 @@
     <ProjectGuid>{557CA42C-AA39-4C44-A998-0452F8C55851}</ProjectGuid>
     <RootNamespace>ClintLib</RootNamespace>
     <Keyword>MakeFileProj</Keyword>
-    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='FZRetail|Win32'" Label="Configuration">

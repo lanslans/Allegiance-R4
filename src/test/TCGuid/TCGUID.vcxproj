@@ -22,7 +22,6 @@
     <ProjectName>TCGuid</ProjectName>
     <ProjectGuid>{7260A2F7-7D40-4D00-9C3A-846939CF16CD}</ProjectGuid>
     <Keyword>MakeFileProj</Keyword>
-    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='FZRetail|Win32'" Label="Configuration">
