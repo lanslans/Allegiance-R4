@@ -989,7 +989,7 @@ bool EngineWindow::RenderFrame()
 
             m_pgroupImage->Render(pcontext);
 			
-			//pcontext->DrawDeferredStrings();
+			pcontext->DrawDeferredStrings();
 
             UpdatePerformanceCounters(pcontext, m_timeCurrent);
 			

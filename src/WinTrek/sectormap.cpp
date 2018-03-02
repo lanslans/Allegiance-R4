@@ -351,8 +351,6 @@ public:
 
     void Render(Context* pcontext)
     {
-		pcontext->SetDeferredStringDrawing(true);
-
         // draw the background
         Surface* psurfaceBackground = m_pimageBkgnd->GetSurface();
         pcontext->DrawImage(psurfaceBackground);
@@ -486,9 +484,6 @@ public:
                 }
             }
         }
-
-		pcontext->SetDeferredStringDrawing(false);
-		pcontext->DrawDeferredStrings();
     }
 };
 

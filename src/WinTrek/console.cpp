@@ -3055,17 +3055,12 @@ public:
 
     void Render(Context* pcontext)
     {
-		pcontext->SetDeferredStringDrawing(true);
-
         pcontext->PushState();
         ConsoleImage::Render(pcontext);
         pcontext->PopState();
 
         if (m_pconsoleData)
             m_pconsoleData->Render(pcontext);
-
-		pcontext->SetDeferredStringDrawing(false);
-		pcontext->DrawDeferredStrings();
     }
     void Update(Time now)
     {
